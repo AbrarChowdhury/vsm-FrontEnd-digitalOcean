@@ -1,0 +1,12 @@
+.Card{
+    background: rgb(5, 5, 47);
+    color: rgb(43, 114, 172);
+    text-align: left;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+}
+.Card:hover {
+    background: rgb(1, 1, 19)!important;
+    cursor: pointer;
+}
