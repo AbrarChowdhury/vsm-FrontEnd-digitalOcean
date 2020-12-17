@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
 import data from '../../data'
+import './patient.styles.scss'
 import Chart from '../chart/chart.component'
 function Patient() {
     let { bed } = useParams();
@@ -11,7 +12,9 @@ function Patient() {
             <h2>Name: {patient.name}</h2>
             <h2>Age: {patient.age}</h2>
             <h2>Sex: {patient.sex}</h2>
-            <Chart/>
+            <div className="chart-container">
+                <Chart/>            
+            </div>
         </div>
     )
 }

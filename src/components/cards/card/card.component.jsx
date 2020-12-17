@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
+import Chart from '../../chart/chart.component'
 import './card.styles.scss'
 function Card({bed,name,age,sex}) {
     let history = useHistory()
@@ -28,11 +29,12 @@ function Card({bed,name,age,sex}) {
            <Header/> 
             <Grid container spacing={2}>
                 <Grid item xs={ 8 }>
+                    <Chart/>
                 </Grid>
                 <Grid item xs={ 4 }>
-                <h2>Temp-90</h2>
-                <h2>Hr-120</h2>
-                <h2>SpG-500</h2>
+                    <h2>Temp-90</h2>
+                    <h2>Hr-120</h2>
+                    <h2>Spo2-500</h2>
                 </Grid>
             </Grid>
         </div>
