@@ -3,11 +3,13 @@ import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Chart from '../../chart/chart.component'
 import './card.styles.scss'
+
 function Card({bed,name,age,sex}) {
     let history = useHistory()
     const redirect = () => {
         history.push(`/${bed}`)
     }
+    
     const Header = ()=>(
         <Grid container spacing={2}>
             <Grid item xs={ 2 }>

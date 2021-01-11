@@ -1,7 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom';
 import { useForm } from "react-hook-form";
-function SignUpForm() {
+function SignInForm() {
     const { register, handleSubmit, reset, errors } = useForm();
     const history=useHistory()
     const onSubmit = data => {
@@ -10,6 +10,9 @@ function SignUpForm() {
         const { username, password } = data
         if(username==='admin' && password==='admin123'){
             history.push("dashboard")
+        }
+        else{
+            alert('Wrong Email/Password')
         }
     }
     return (
@@ -27,4 +30,4 @@ function SignUpForm() {
     )
 }
 
-export default SignUpForm
+export default SignInForm

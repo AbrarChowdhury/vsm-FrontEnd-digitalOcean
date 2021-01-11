@@ -1,4 +1,5 @@
-import { Cards, Patient} from './components';
+import {Patient} from './components';
+import Dashboard from './pages/dashboard/dashboard'
 import LandingPage from './pages/landingPage/landingPage.component'
 import AddPatientForm from './pages/addPatientForm/addPatientForm.component'
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
@@ -14,7 +15,7 @@ function App() {
             <LandingPage />
           </Route>
           <Route exact path="/dashboard">
-            <Cards />
+            <Dashboard />
           </Route>
           <Route exact path="/add-patient">
             <AddPatientForm/>
