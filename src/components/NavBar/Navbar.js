@@ -18,22 +18,23 @@ const useStyles = makeStyles(theme => ({
     title: {
         flexGrow: 1,
     },
+   
 
 }))
 
 export default function ButtonAppBar() {
-      const classes = useStyles();
+    const classes = useStyles();
 
     return (
         <>
-            <AppBar position="static">
+            <AppBar position="static" style={{ background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)' }}>
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         {/* <MenuIcon /> */}
                     </IconButton>
                     <Typography variant="h6" className={classes.title} >
-                        News
-          </Typography>
+                        VSM Dashboard
+                    </Typography>
                     {/* <Button color="inherit">Login</Button> */}
                 </Toolbar>
             </AppBar>
