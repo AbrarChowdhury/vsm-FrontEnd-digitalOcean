@@ -10,6 +10,7 @@ function Card({bed,name,age,sex}) {
         history.push(`/${bed}`)
     }
     
+    
     const Header = ()=>(
         <Grid container spacing={2}>
             <Grid item xs={ 2 }>
@@ -27,6 +28,7 @@ function Card({bed,name,age,sex}) {
         </Grid>
     )
     return (
+        
         <div className="Card" onClick={redirect}>
            <Header/> 
             <Grid container spacing={2}>
