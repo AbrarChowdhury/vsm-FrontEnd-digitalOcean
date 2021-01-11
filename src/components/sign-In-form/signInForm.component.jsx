@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import HomePageIMG from '../../assets/Login1.png'
+import HomePageIMG from '../../assets/Login2.png'
 import BioforgeLogo from '../../assets/BioforgeLogo1.png'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField';
@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.up('lg')]: {
             float: 'left',
-            height: '-webkit-fill-available',
+            maxWidth: '-webkit-fill-available',
         },
         [theme.breakpoints.up('xl')]: {
             float: 'left',
-            maxHeight: '-webkit-fill-available',
+            maxWidth: '-webkit-fill-available',
         },
     },
     img1: {
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
             paddingTop:'40px',
             maxHeight: '141px',
             maxWidth: '111px',
-            paddingLeft: '35px',
+            paddingLeft: '70px',
             textAlign: 'left'
 
         },
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
             width: 140,
             padding: '0 40px',
             margin: '30px',
-            marginLeft: '410px',
+            marginLeft: '310px',
         },
         [theme.breakpoints.up('xl')]: {
             background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)',
@@ -92,18 +92,18 @@ const useStyles = makeStyles((theme) => ({
             // width:40,
             padding: '0 40px',
             margin: '30px',
-            marginLeft: '715px',
+            marginLeft: '421px',
         }
 
     },
     text: {
         paddingTop:'20px',
-        paddingLeft: '50px',
+        paddingLeft: '90px',
         textAlign: 'left',
 
     },
     subtitleText: {
-        paddingLeft: '50px',
+        paddingLeft: '90px',
         textAlign: 'left',
         paddingTop: '30px',
     },
@@ -111,12 +111,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('lg')]: {
             marginTop: '30px',
             marginLeft: '50px',
-            width: '500px'
+            width: '469px'
         },
         [theme.breakpoints.up('xl')]: {
             marginTop: '30px',
-            marginLeft: '50px',
-            width: '800px'
+            marginLeft: '90px',
+            width: '469px'
 
         },
 
@@ -175,14 +175,14 @@ function SignInForm() {
         <>
             <Grid container>
 
-                <Grid item xs={12} md={12} lg={7} xl={6} >
+                <Grid item xs={12} md={12} lg={7} xl={7} >
                     <span>
                         <img className={classes.img} src={HomePageIMG} />
                     </span>
                 </Grid>
 
 
-                <Grid item xs={12} md={12} lg={5} xl={6}>
+                <Grid item xs={12} md={12} lg={5} xl={5}>
 
 
                     <span>
