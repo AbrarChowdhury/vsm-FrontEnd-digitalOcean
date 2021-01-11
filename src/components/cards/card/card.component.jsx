@@ -11,16 +11,16 @@ function Card({bed,name,age,sex}) {
     const Header = ()=>(
         <Grid container spacing={2}>
             <Grid item xs={ 2 }>
-                Bed: {bed}
+                <p className="white bold">Bed: {bed}</p>
             </Grid>
             <Grid item xs={ 5 }>
-                Name: {name}
+                <p className="white bold">Name: {name}</p> 
             </Grid>
             <Grid item xs={ 2 }>
-                Age: {age}
+                <p className="white bold">Age: {age}</p>
             </Grid>
             <Grid item xs={ 3 }>
-                Sex: {sex}
+                <p className="white bold">Sex: {sex}</p>    
             </Grid>
         </Grid>
     )
@@ -32,9 +32,9 @@ function Card({bed,name,age,sex}) {
                     <Chart/>
                 </Grid>
                 <Grid item xs={ 4 }>
-                    <h2>Temp-90</h2>
-                    <h2>Hr-120</h2>
-                    <h2>Spo2-500</h2>
+                    <h2 className="green" >Hr-120</h2>
+                    <h2 className="white" >Temp-90</h2>
+                    <h2 className="blue" >Spo2-500</h2>
                 </Grid>
             </Grid>
         </div>

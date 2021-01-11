@@ -1,10 +1,21 @@
 .Card{
-    background: rgb(5, 5, 47);
-    color: rgb(43, 114, 172);
+    background: #04139a;
     text-align: left;
     padding: 10px;
-    margin: 5px;
-    border-radius: 6px;
+    margin: 2px;
+    border-radius: 2px;
+    .white{
+        color:white;
+    }
+    .bold{
+        font-weight: bold;
+    }
+    .green{
+        color:#9EF48F;
+    }
+    .blue{
+        color:#A3EDD6;
+    }
 }
 .Card:hover {
     background: rgb(1, 1, 19)!important;
