@@ -1,7 +1,7 @@
 import {Patient} from './components';
 import Dashboard from './pages/dashboard/dashboard'
 import LandingPage from './pages/landingPage/landingPage.component'
-import AddPatientForm from './pages/addPatientForm/addPatientForm.component'
+import AddPatientForm from './components/patient/addPatientForm.component'
 import { BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import './App.css';
 

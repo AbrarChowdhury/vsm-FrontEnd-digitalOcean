@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import Grid from '@material-ui/core/Grid'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import UpdatePatientForm from '../updatePatientForm/updatePatientForm.component'
+import UpdatePatientForm from './updatePatientForm.component'
 import io from "socket.io-client";
 import DeleteButton from "../deleteButton/deleteButton"
 import './patient.styles.scss'
