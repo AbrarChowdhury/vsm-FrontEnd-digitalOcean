@@ -9,7 +9,7 @@ import './cards.styles.scss'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding:'20px',
+    padding: '20px',
     flexGrow: 1,
   },
 
@@ -27,47 +27,55 @@ function Cards() {
     console.log(text)
   }
 
-  const [data, setData] = useState([{ bed: 1 }, { bed: 2 }, { bed: 3 }, { bed: 4 }, { bed: 5 }, { bed: 6 }, { bed: 7 }, { bed: 8 }, { bed: 9 },])
-  
+  const [data, setData] = useState([{ bed: 1,_id:null }, { bed: 2 , _id:null }, { bed: 3, _id:null }, { bed: 4, _id:null }, { bed: 5, _id:null }, { bed: 6, _id:null }, { bed: 7, _id:null }, { bed: 8, _id:null }, { bed: 9, _id:null },])
+
 
   useEffect(() => {
+   
+
     axios.get(`http://localhost:5000/patient`)
       .then(function (response) {
-      
 
         let arr = data
 
         console.log(response.data)
 
-        response.data.map((responseData,index)=>{
+        response.data.map((responseData, index) => {
+          data.map((item, index) => {
 
-          data.map((item,index)=>{
-
-            if(responseData.bed==item.bed){
-              arr[Number(item.bed)-1]=responseData
+            if (responseData.bed == item.bed) {
+              arr[Number(item.bed) - 1] = responseData
               setData(arr)
+
             }
           })
         })
-        // console.log(responseData)
+        console.log(data);
       })
       .catch(function (error) {
         console.log(error.data);
       })
-  }, [data])
+  }, [])
 
+  
+  
+  
   return (
 
     <div className={classes.root}>
-     
-          <Grid container>
-            {data.map(data =>
-              <Grid item xs={4}>
-                <Card bed={data.bed} name={data.name} age={data.age} sex={data.sex} />
-              </Grid>
-            )}
+
+      <Grid container>
+
+        {data.map((data,index) =>
+
+          <Grid key={index} item xs={4}>
+            <Card data={data} />
           </Grid>
-      
+        )}
+
+        
+      </Grid>
+
     </div>
   )
 }

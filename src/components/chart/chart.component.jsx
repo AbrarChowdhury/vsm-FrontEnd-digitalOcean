@@ -2,6 +2,7 @@ import React from 'react'
 import { Scatter } from 'react-chartjs-2'
 import './chart.styles.scss'
 import config from './chart.config'
+
 function Chart() {
     function getRandomInt(min, max) {
         min = Math.ceil(min);

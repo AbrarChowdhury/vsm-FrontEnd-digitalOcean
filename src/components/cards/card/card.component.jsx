@@ -1,29 +1,37 @@
-import React from 'react'
+import React,{ useState, useEffect }  from 'react'
 import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Chart from '../../chart/chart.component'
 import './card.styles.scss'
 
-function Card({bed,name,age,sex}) {
+function Card(props) {
+    const [data, setData] = useState(props.data)
+
     let history = useHistory()
+    
     const redirect = () => {
-        history.push(`/${bed}`)
+        history.push(`/${data.bed}`)
     }
+
+    useEffect(() => {
+       console.log(data);
+       
+    }, [])
     
     
     const Header = ()=>(
         <Grid container spacing={2}>
             <Grid item xs={ 2 }>
-                <p className="white bold">Bed: {bed}</p>
+                <p className="white bold">Bed: {data.bed}</p>
             </Grid>
             <Grid item xs={ 5 }>
-                <p className="white bold">Name: {name}</p> 
+                <p className="white bold">Name: {data.name}</p> 
             </Grid>
             <Grid item xs={ 2 }>
-                <p className="white bold">Age: {age}</p>
+                <p className="white bold">Age: {data.age}</p>
             </Grid>
             <Grid item xs={ 3 }>
-                <p className="white bold">Sex: {sex}</p>    
+                <p className="white bold">Sex: {data.sex}</p>    
             </Grid>
         </Grid>
     )
