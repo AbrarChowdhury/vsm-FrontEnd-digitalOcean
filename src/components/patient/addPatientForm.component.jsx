@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '20px',
 
   },
-  dialogHeader:{
-    textAlign:'center',
+  dialogHeader: {
+    textAlign: 'center',
   },
-  buttons:{
-    alignSelf:'center',
+  buttons: {
+    alignSelf: 'center',
   }
 
 })
@@ -57,11 +57,20 @@ const useStyles = makeStyles((theme) => ({
 function AddPatientForm() {
 
   const classes = useStyles()
-
+  
+  const [bedIndex, setBedIndex] = useState();
   const initialState = { name: '', bed: '', age: '', sex: '' }
   const [formData, setFormData] = useState(initialState)
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
+  
+
+  const [values, setValues] = useState({
+    bed: '',
+    Name: '',
+    Age: '',
+    Sex: '',
+  })
 
   const data = [
     { quarter: 1, earnings: 13000 },
@@ -77,9 +86,21 @@ function AddPatientForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("formData: ", formData)
 
-    axios.post('http://localhost:5000/patient', formData)
+    const newPatient = {
+      bed: bedIndex || undefined,
+      name: values.Name || undefined,
+      age: values.Age || undefined,
+      sex: values.Sex || undefined,
+     
+  }
+    
+
+    console.log("formData: ", values)
+
+
+
+    axios.post('http://localhost:5000/patient', newPatient)
       .then(function (response) {
         console.log(response);
       })
@@ -90,12 +111,18 @@ function AddPatientForm() {
     setFormData(initialState)
 
   }
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
+  const handleChange = name => event => {
+    setValues({ ...values, [name]: event.target.value })
   }
-  const handleClickOpen = () => {
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target
+  //   setFormData({ ...formData, [name]: value })
+  // }
+  const handleClickOpen = (index) => {
     setOpen(true);
+    index=index+1
+    setBedIndex(index)
+    console.log(index);
   };
 
   const handleClose = () => {
@@ -111,7 +138,7 @@ function AddPatientForm() {
           {data.map((elem, index) => (
             <Grid item xs={12} sm={6} md={3} xl={4} key={data.indexOf(elem)}>
               <Card >
-                <CardActionArea onClick={handleClickOpen} style={{ height: '250px' }} >
+                <CardActionArea onClick={()=>handleClickOpen(index)} style={{ height: '250px' }} >
                   <CardContent>
                     <Typography className={classes.textHeader} variant="h5" >
                       + ADD
@@ -131,29 +158,27 @@ function AddPatientForm() {
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle className={classes.dialogHeader} >Create a Patient</DialogTitle>
         <DialogContent>
-          <TextField autoFocus className={classes.textField} fullWidth label="First Name" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
+          <TextField autoFocus className={classes.textField} onChange={handleChange('Name')} fullWidth label="First Name" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
           <TextField className={classes.textField} fullWidth label="Last Name" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
-          <TextField className={classes.textField} fullWidth label="Age" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
+          <TextField className={classes.textField} fullWidth onChange={handleChange('Age')} label="Age" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
+          <TextField className={classes.textField} fullWidth onChange={handleChange('Sex')} label="Sex" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
           <TextField className={classes.textField} fullWidth label="Diagnosis" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
           <TextField className={classes.textField} fullWidth label="Admission Date" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
           <TextField className={classes.textField} fullWidth label="Consultant, Department" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
           <TextField className={classes.textField} fullWidth label="Duty Doctor" variant="outlined" InputProps={{ classes: { notchedOutline: classes.notchedOutline } }} />
-
-
-
         </DialogContent>
         <span className={classes.buttons}>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Cancel
           </Button>
-          <Button className={classes.btn} onClick={handleClose} color="primary">
-            Save
+            <Button className={classes.btn} onClick={handleSubmit} color="primary">
+              Save
           </Button>
-        </DialogActions>
+          </DialogActions>
         </span>
       </Dialog>
-      
+
       {/* <h1>Add new Patient</h1>
       <form onSubmit={handleSubmit}>
         <input type="text" name="bed" placeholder="bed number" value={formData.bed} onChange={handleChange} />
