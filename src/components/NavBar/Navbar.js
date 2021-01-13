@@ -44,12 +44,21 @@ export default function ButtonAppBar() {
     const classes = useStyles();
 
     const [personName, setPersonName] = useState()
+    const [open, setOpen] = useState(false);
 
     useEffect(() => {
 
         setPersonName("Dr. Sarder A. Nayeem")
 
     }, [])
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <>
@@ -63,10 +72,11 @@ export default function ButtonAppBar() {
                         VSM Dashboard
                     </Typography>
 
-                    <MenuItem className={classes.link} component={Link} to={'/add-patient'}>Add Patient</MenuItem>
-                    <MenuItem className={classes.link} component={Link} to={'/add-patient'}>Remove Patient</MenuItem>
+                    <MenuItem className={classes.link} onClick={handleClickOpen} component={Link} to={'/add-patient'}>Add Patient</MenuItem>
+                    <MenuItem className={classes.link} component={Link} to={'/remove-patient'}>Remove Patient</MenuItem>
 
                     <div className={classes.link}>
+
                         <Typography style={{ left: '300px' }}>Welcome</Typography>
                         <Typography variant="h6" >{personName}</Typography>
                         <Typography variant="caption" display="block" component={Link} to={'/'}>Sign out</Typography>

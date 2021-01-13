@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 })
 )
 
-function AddPatientForm() {
+function RemovePatientForm() {
 
   const classes = useStyles()
 
@@ -81,7 +81,7 @@ function AddPatientForm() {
                 <CardActionArea onClick={()=>{console.log("hello");}} style={{height:'250px'}} >
                   <CardContent>
                     <Typography className={classes.textHeader} variant="h5" >
-                      + ADD
+                      - Remove
                     </Typography>
                     <Typography className={classes.textHeader} variant="h5" >
                       BED {index+1}
@@ -95,16 +95,9 @@ function AddPatientForm() {
           ))}
         </Grid>
       </div>
-      {/* <h1>Add new Patient</h1>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="bed" placeholder="bed number" value={formData.bed} onChange={handleChange} />
-        <input type="text" name="name" placeholder="name" value={formData.name} onChange={handleChange} />
-        <input type="text" name="age" placeholder="age" value={formData.age} onChange={handleChange} />
-        <input type="text" name="sex" placeholder="sex" value={formData.sex} onChange={handleChange} />
-        <input type="submit" name="button" />
-      </form> */}
+     
     </div>
   )
 }
 
-export default AddPatientForm
+export default RemovePatientForm
