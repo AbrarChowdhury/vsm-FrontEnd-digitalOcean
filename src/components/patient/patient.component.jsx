@@ -11,7 +11,7 @@ import axios from 'axios'
 import Navbar from '../NavBar/Navbar'
 import { Typography } from '@material-ui/core'
 import Icon from '@material-ui/core/Icon'
-
+import { Redirect, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Edit from '@material-ui/icons/Edit'
 
@@ -45,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     },
     chart: {
         padding: '20px 40px 40px 40px'
+    },
+    button: {
+        backgroundColor: "#FFFFFF"
     }
 
 
@@ -59,6 +62,7 @@ function Patient() {
     const [patient, setPatient] = useState({})
     const [inputValue, setInputValue] = useState('')
     const [vsmData, setVsmData] = useState('')
+    const [redirectToUpdate, setRedirectToUpdate] = useState(false)
 
 
     const handleChange = (e) => {
@@ -91,6 +95,11 @@ function Patient() {
         })
     }, [])
 
+
+    // if (redirectToUpdate == true) {
+    //     return <Redirect to=`/${bed}/updatePatient` />
+    // }
+
     return (
         <>
             <div className={classes.root}>
@@ -100,7 +109,7 @@ function Patient() {
                 <div className={classes.chartBox}>
 
                     <div className={classes.chartText}>
-                        <Grid container xl={24}>
+                        <Grid container xl={12}>
                             <Grid item xs={1} className={classes.textHeader1}>
                                 <Typography variant="h6" className={classes.textHeader}>Bed No: </Typography>
                                 <Typography variant="h6" className={classes.textBody}>{patient.bed}</Typography>
@@ -130,8 +139,9 @@ function Patient() {
 
                             </Grid>
                             <Grid item xs={1}>
-                                <Button variant="contained" color="#FFFFFF" className={classes.button} endIcon={<Edit/>}><Typography>Edit</Typography> </Button>
-
+                                <Link to={'/updatePatient/' + patient.bed}>
+                                    <Button variant="contained" onClick={() => setRedirectToUpdate(true)} className={classes.button} endIcon={<Edit className={classes.textHeader} />}><Typography className={classes.textHeader}>Edit</Typography> </Button>
+                                </Link>
                             </Grid>
 
                             {/* <Grid item xs={6}>
@@ -148,16 +158,23 @@ function Patient() {
                     </div>
 
                     <div className={classes.chart}>
-                        <Chart />
+                        <Grid container xl={12}>
+
+                            <Grid item xl={10}>
+                                <Chart />
+                                <Typography variant="h6" style={{paddingTop:'30px',paddingBottom:"30px"}}className={classes.textHeader} >PLETH</Typography>
+                                <Chart />
+                            </Grid>
+                            <Grid container item xl={2}>
+                                <Typography color="primary">Hello</Typography>
+                            </Grid>
+                        </Grid>
+
+
                     </div>
                 </div>
 
-                {/* <form onSubmit={handleSubmit}>
-                    <input type="text" name="input" value={inputValue} onChange={handleChange} />
-                    <input type="submit" name="button" />
-                </form> */}
 
-                {/* <h1>Data: {vsmData}</h1> */}
             </div>
         </>
     )

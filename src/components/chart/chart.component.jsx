@@ -27,13 +27,7 @@ function Chart() {
                 options={config.options}
                 
             />
-            <br>
-            </br>
-             <Scatter 
-                height={50}
-                data= {data}
-                options={config.options}
-            />
+            
         </div>
     )
 }
