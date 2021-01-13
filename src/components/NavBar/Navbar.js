@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,6 +13,8 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { Link, NavLink } from 'react-router-dom'
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
+import HomeIcon from '@material-ui/icons/Home';
+
 
 const useStyles = makeStyles(theme => ({
 
@@ -53,6 +55,10 @@ export default function ButtonAppBar() {
         <>
             <AppBar position="static" style={{ background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)' }}>
                 <Toolbar>
+                    <IconButton component={Link} to={'/dashboard'} color="inherit">
+                        <HomeIcon />
+                    </IconButton>
+
                     <Typography variant="h5" className={classes.title} >
                         VSM Dashboard
                     </Typography>
@@ -61,7 +67,7 @@ export default function ButtonAppBar() {
                     <MenuItem className={classes.link} component={Link} to={'/add-patient'}>Remove Patient</MenuItem>
 
                     <div className={classes.link}>
-                        <Typography style={{left:'300px'}}>Welcome</Typography>
+                        <Typography style={{ left: '300px' }}>Welcome</Typography>
                         <Typography variant="h6" >{personName}</Typography>
                         <Typography variant="caption" display="block" component={Link} to={'/'}>Sign out</Typography>
 

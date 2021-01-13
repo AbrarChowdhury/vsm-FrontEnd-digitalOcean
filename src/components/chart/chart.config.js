@@ -12,7 +12,8 @@ const options = {
         line: {
             tension: 0
         }
-    }
+    },
+    
 }
 
 const data = {
@@ -21,7 +22,8 @@ const data = {
             pointRadius: 0,
             showLine: true,
             backgroundColor: 'rgba(0, 0, 0, 0)',
-            borderColor: '#9EF48F'
+            borderColor: '#9EF48F',
+            spanGaps:false
     }]
 }
 const config={

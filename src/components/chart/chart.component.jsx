@@ -22,7 +22,15 @@ function Chart() {
     return (
         <div className='Line'>
             <Scatter 
-                height={100}
+                height={50}
+                data= {data}
+                options={config.options}
+                
+            />
+            <br>
+            </br>
+             <Scatter 
+                height={50}
                 data= {data}
                 options={config.options}
             />

@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import Navbar from '../NavBar/Navbar'
 
 function AddPatientForm() {
     const initialState={name: '', bed: '', age: '', sex: ''}
@@ -25,6 +26,9 @@ function AddPatientForm() {
 
     return (
         <div>
+
+        <Navbar></Navbar>
+
         <h1>Add new Patient</h1>
            <form onSubmit={handleSubmit}>
             <input type="text" name="bed" placeholder="bed number" value={formData.bed} onChange={handleChange}/>
