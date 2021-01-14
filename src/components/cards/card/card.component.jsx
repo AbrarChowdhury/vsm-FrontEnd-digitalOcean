@@ -118,7 +118,7 @@ function Card(props) {
 
     return (
 
-        <div className={classes.chartBox} onClick={() => { console.log("hello"); }}>
+        <div className={classes.chartBox} onClick={redirect}>
 
             <div className={classes.chartText}>
                 <Grid container xs={12}>
