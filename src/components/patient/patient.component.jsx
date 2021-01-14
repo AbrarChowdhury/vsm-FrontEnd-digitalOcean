@@ -14,6 +14,7 @@ import Icon from '@material-ui/core/Icon'
 import { Redirect, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Edit from '@material-ui/icons/Edit'
+import { sizing } from '@material-ui/system';
 
 
 const ENDPOINT = 'http://localhost:5000/';
@@ -78,12 +79,12 @@ const useStyles = makeStyles((theme) => ({
     blueHeadersNumbers:{
         color: "#00E5FF",
         textAlign:'center',
-        fontSize:'5rem',
-        paddingTop:'60px'
+        // fontSize:'5rem',
+        
     },
     blueBottoms:{
         color: "#00E5FF",
-        paddingTop:'70px'
+        paddingTop:'40px'
     }
 
 
@@ -229,32 +230,34 @@ function Patient() {
                                     <Typography variant="h5"  className={classes.greenBottoms} >-0.8</Typography>
                                 </Grid>
 
-                                <Grid item xs={12}>
+                                <Grid item style={{maxHeight:'10px'}} xs={12}>
                                 <Typography variant="h4" className={classes.purpleHeader} >NBP 109/70 (79)</Typography>
                                 </Grid>
 
                                 <Grid item xs={1}>
-                                    <Typography variant="h5" className={classes.blueHeaders} >HR</Typography>
-                                    <Typography variant="h5" className={classes.blueHeaders} >150</Typography>
-                                    <Typography variant="h5"  className={classes.blueBottoms} >50</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >Sp02</Typography>
+                                    
+                                    <Typography variant="h5"  className={classes.blueBottoms} >Pulse</Typography>
                                     
                                 </Grid>
 
                                 <Grid item xs={5}>
-                                    <Typography variant="h2" className={classes.blueHeadersNumbers} >120</Typography>
+                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >120</Typography>
+                                    <br></br>
+                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >120</Typography>
                                 </Grid>
 
                                 <Grid item xs={3}>
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-III</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-aVR</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-aVL</Typography>
-                                    <Typography variant="h5"  className={classes.blueBottoms} >ST-aVF</Typography>
+                                    <Typography variant="h5"  className={classes.blueHeaders} >ST-aVF</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                                    <Typography variant="h5"  className={classes.blueBottoms} >?</Typography>
+                                    <Typography variant="h5"  className={classes.blueHeaders} >?</Typography>
                                 </Grid>
 
                             </Grid>
