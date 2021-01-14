@@ -48,7 +48,42 @@ const useStyles = makeStyles((theme) => ({
         padding: '20px 40px 40px 40px'
     },
     button: {
+        marginLeft:'20px',
+        padding: '05px 20px 05px 20px',
         backgroundColor: "#FFFFFF"
+    },
+    ecgTexts:{
+        paddingLeft:'20px'
+    },
+    greenHeaders: {
+        color: "#5FFF2D",
+    },
+    greenHeadersNumbers:{
+        color: "#5FFF2D",
+        textAlign:'center',
+        fontSize:'5rem',
+        paddingTop:'60px'
+       
+    },
+    greenBottoms:{
+        color: "#5FFF2D",
+        paddingTop:'70px'
+    },
+    purpleHeader:{
+        color:'#FF1EFD'
+    },
+    blueHeaders:{
+        color:'#00E5FF',
+    },
+    blueHeadersNumbers:{
+        color: "#00E5FF",
+        textAlign:'center',
+        fontSize:'5rem',
+        paddingTop:'60px'
+    },
+    blueBottoms:{
+        color: "#00E5FF",
+        paddingTop:'70px'
     }
 
 
@@ -110,7 +145,7 @@ function Patient() {
                 <div className={classes.chartBox}>
 
                     <div className={classes.chartText}>
-                        <Grid container xl={12}>
+                        <Grid container xs={12}>
                             <Grid item xs={1} className={classes.textHeader1}>
                                 <Typography variant="h6" className={classes.textHeader}>Bed No: </Typography>
                                 <Typography variant="h6" className={classes.textBody}>{patient.bed}</Typography>
@@ -141,7 +176,7 @@ function Patient() {
                             </Grid>
                             <Grid item xs={1}>
 
-                             
+
                                 <Link style={{ textDecoration: 'none' }} to={'/updatePatient/' + patient.bed}>
                                     <Button variant="contained" onClick={() => setRedirectToUpdate(true)} className={classes.button} endIcon={<Edit className={classes.textHeader} />}><Typography className={classes.textHeader}>Edit</Typography> </Button>
                                 </Link>
@@ -161,16 +196,70 @@ function Patient() {
                     </div>
 
                     <div className={classes.chart}>
-                        <Grid container xl={12}>
+                        <Grid container xs={12}>
 
-                            <Grid item xl={9}>
+                            <Grid item xs={9}>
                                 <Chart />
-                                <Typography variant="h6" style={{paddingTop:'30px',paddingBottom:"30px"}} className={classes.textHeader} >PLETH</Typography>
+                                <Typography variant="h6" style={{ paddingTop: '30px', paddingBottom: "30px" }} className={classes.textHeader} >PLETH</Typography>
                                 <Chart />
                             </Grid>
-                            <Grid container item xl={3}>
-                                <Typography color="primary">Hello</Typography>
+
+                       
+                            <Grid item className={classes.ecgTexts} container spacing={1} xs={3}>
+
+                                <Grid item xs={1}>
+                                    <Typography variant="h5" className={classes.greenHeaders} >HR</Typography>
+                                    <Typography variant="h5" className={classes.greenHeaders} >150</Typography>
+                                    <Typography variant="h5"  className={classes.greenBottoms} >50</Typography>
+                                    
+                                </Grid>
+
+                                <Grid item xs={5}>
+                                    <Typography variant="h2" className={classes.greenHeadersNumbers} >120</Typography>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <Typography variant="h5" className={classes.greenHeaders} >PVC</Typography>
+                                    <Typography variant="h5" className={classes.greenHeaders} >ST-I</Typography>
+                                    <Typography variant="h5"  className={classes.greenBottoms} >ST-II</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography variant="h5" className={classes.greenHeaders} >0</Typography>
+                                    <Typography variant="h5" className={classes.greenHeaders} >?</Typography>
+                                    <Typography variant="h5"  className={classes.greenBottoms} >-0.8</Typography>
+                                </Grid>
+
+                                <Grid item xs={12}>
+                                <Typography variant="h4" className={classes.purpleHeader} >NBP 109/70 (79)</Typography>
+                                </Grid>
+
+                                <Grid item xs={1}>
+                                    <Typography variant="h5" className={classes.blueHeaders} >HR</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >150</Typography>
+                                    <Typography variant="h5"  className={classes.blueBottoms} >50</Typography>
+                                    
+                                </Grid>
+
+                                <Grid item xs={5}>
+                                    <Typography variant="h2" className={classes.blueHeadersNumbers} >120</Typography>
+                                </Grid>
+
+                                <Grid item xs={3}>
+                                    <Typography variant="h5" className={classes.blueHeaders} >ST-III</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >ST-aVR</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >ST-aVL</Typography>
+                                    <Typography variant="h5"  className={classes.blueBottoms} >ST-aVF</Typography>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
+                                    <Typography variant="h5"  className={classes.blueBottoms} >?</Typography>
+                                </Grid>
+
                             </Grid>
+                            
+
                         </Grid>
 
 
