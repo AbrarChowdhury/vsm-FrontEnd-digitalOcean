@@ -1,31 +1,63 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import Navbar from '../NavBar/Navbar'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader'
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core/'
-import GridList from '@material-ui/core/GridList';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
 
   },
-  container:{
+  container: {
     margin: '20px 20px 0px 20px',
   },
   textHeader: {
-    textAlign:'center',
+    textAlign: 'center',
     color: '#64D7EB',
-    justifyContent:'center',
-},
+    justifyContent: 'center',
+  },
+  buttons: {
+    alignSelf: 'center'
+  },
+
+  btn1: {
+    background: '#707070',
+    '&:hover': {
+      backgroundColor: '#707070',
+    },
+    color: 'white',
+    width: 140,
+
+  },
+  btn: {
+    background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)',
+    border: 0,
+    borderRadius: 3,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    color: 'white',
+    width: 140,
+
+  },
+  dialogHeader: {
+    color: "#707070",
+    textAlign: 'center',
+  },
+  text: {
+
+    textAlign: 'center',
+
+  },
 
 })
 )
@@ -36,7 +68,9 @@ function RemovePatientForm() {
 
   const initialState = { name: '', bed: '', age: '', sex: '' }
   const [formData, setFormData] = useState(initialState)
-  const bull = <span className={classes.bullet}>•</span>;
+  const [open, setOpen] = useState(false);
+  const [bedIndex, setBedIndex] = useState('');
+
   const data = [
     { quarter: 1, earnings: 13000 },
     { quarter: 2, earnings: 16500 },
@@ -64,10 +98,17 @@ function RemovePatientForm() {
     setFormData(initialState)
 
   }
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData({ ...formData, [name]: value })
-  }
+
+  const handleClickOpen = (index) => {
+    setOpen(true);
+    index = index + 1
+    setBedIndex(index)
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setBedIndex('')
+  };
 
   return (
     <div className={classes.root}>
@@ -75,16 +116,16 @@ function RemovePatientForm() {
       <Navbar></Navbar>
       <div className={classes.container}>
         <Grid container spacing={3}>
-          {data.map((elem,index) => (
+          {data.map((elem, index) => (
             <Grid item xs={12} sm={6} md={3} xl={4} key={data.indexOf(elem)}>
               <Card >
-                <CardActionArea onClick={()=>{console.log("hello");}} style={{height:'250px'}} >
+                <CardActionArea onClick={()=>handleClickOpen(index)} style={{ height: '250px' }} >
                   <CardContent>
                     <Typography className={classes.textHeader} variant="h5" >
                       - Remove
                     </Typography>
                     <Typography className={classes.textHeader} variant="h5" >
-                      BED {index+1}
+                      BED {index + 1}
                     </Typography>
 
                   </CardContent>
@@ -95,7 +136,29 @@ function RemovePatientForm() {
           ))}
         </Grid>
       </div>
-     
+
+      <Dialog open={open} onClose={handleClose} >
+        <DialogTitle className={classes.dialogHeader} >Create a Patient</DialogTitle>
+        <DialogContent>
+          <Typography className={classes.text} >
+            Do you wish to permanently remove bed {bedIndex}?
+            </Typography>
+            <Typography className={classes.text}>
+            It is being occupied by Rafat Islam.
+            </Typography>
+        </DialogContent>
+        <span className={classes.buttons}>
+          <DialogActions>
+            <Button className={classes.btn} onClick={handleClose} >
+              No
+          </Button>
+            <Button className={classes.btn1} onClick={handleSubmit} color="primary">
+              Yes
+          </Button>
+          </DialogActions>
+        </span>
+      </Dialog>
+
     </div>
   )
 }

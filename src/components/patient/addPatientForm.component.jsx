@@ -32,12 +32,21 @@ const useStyles = makeStyles((theme) => ({
     borderWidth: "1px",
     borderColor: "#64D7EB"
   },
+  btn1: {
+    background: '#707070',
+    '&:hover': {
+      backgroundColor: '#707070',
+    },
+    color: 'white',
+    width: 140,
+  },
   btn: {
     background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)',
     border: 0,
     borderRadius: 3,
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     color: 'white',
+    width: 140,
   },
   textField: {
 
@@ -45,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
   },
   dialogHeader: {
+    color:"#707070",
     textAlign: 'center',
   },
   buttons: {
@@ -57,13 +67,13 @@ const useStyles = makeStyles((theme) => ({
 function AddPatientForm() {
 
   const classes = useStyles()
-  
+
   const [bedIndex, setBedIndex] = useState();
   const initialState = { name: '', bed: '', age: '', sex: '' }
   const [formData, setFormData] = useState(initialState)
   const [open, setOpen] = useState(false);
 
-  
+
 
   const [values, setValues] = useState({
     bed: '',
@@ -92,9 +102,9 @@ function AddPatientForm() {
       name: values.Name || undefined,
       age: values.Age || undefined,
       sex: values.Sex || undefined,
-     
-  }
-    
+
+    }
+
 
     console.log("formData: ", values)
 
@@ -120,7 +130,7 @@ function AddPatientForm() {
   // }
   const handleClickOpen = (index) => {
     setOpen(true);
-    index=index+1
+    index = index + 1
     setBedIndex(index)
     console.log(index);
   };
@@ -138,7 +148,7 @@ function AddPatientForm() {
           {data.map((elem, index) => (
             <Grid item xs={12} sm={6} md={3} xl={4} key={data.indexOf(elem)}>
               <Card >
-                <CardActionArea onClick={()=>handleClickOpen(index)} style={{ height: '250px' }} >
+                <CardActionArea onClick={() => handleClickOpen(index)} style={{ height: '250px' }} >
                   <CardContent>
                     <Typography className={classes.textHeader} variant="h5" >
                       + ADD
@@ -169,7 +179,7 @@ function AddPatientForm() {
         </DialogContent>
         <span className={classes.buttons}>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button className={classes.btn1} onClick={handleClose} >
               Cancel
           </Button>
             <Button className={classes.btn} onClick={handleSubmit} color="primary">

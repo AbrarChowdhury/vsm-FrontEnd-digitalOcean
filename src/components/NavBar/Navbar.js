@@ -35,6 +35,9 @@ const useStyles = makeStyles(theme => ({
     },
     link: {
         marginRight: '10px'
+    },
+    link1: {
+        marginRight: '10px'
     }
 
 
@@ -72,14 +75,14 @@ export default function ButtonAppBar() {
                         VSM Dashboard
                     </Typography>
 
-                    <MenuItem className={classes.link} onClick={handleClickOpen} component={Link} to={'/add-patient'}>Add Patient</MenuItem>
-                    <MenuItem className={classes.link} component={Link} to={'/remove-patient'}>Remove Patient</MenuItem>
+                    <MenuItem className={classes.link1}  onClick={handleClickOpen} component={Link} to={'/add-patient'}>Add Patient</MenuItem>
+                    <MenuItem className={classes.link1}  component={Link} to={'/remove-patient'}>Remove Patient</MenuItem>
 
                     <div className={classes.link}>
 
-                        <Typography style={{ left: '300px' }}>Welcome</Typography>
-                        <Typography variant="h6" >{personName}</Typography>
-                        <Typography variant="caption" display="block" component={Link} to={'/'}>Sign out</Typography>
+                        <Typography style={{ paddingLeft:'125px' }}>Welcome</Typography>
+                        <Typography  variant="h6" >{personName}</Typography>
+                        <Typography style={{ textDecoration: 'none',color: '#FFFFFF',paddingLeft:'145px' }} variant="caption" display="block" component={Link} to={'/'}>Sign out</Typography>
 
 
                     </div>
