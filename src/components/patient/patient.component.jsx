@@ -140,7 +140,9 @@ function Patient() {
 
                             </Grid>
                             <Grid item xs={1}>
-                                <Link to={'/updatePatient/' + patient.bed}>
+
+                             
+                                <Link style={{ textDecoration: 'none' }} to={'/updatePatient/' + patient.bed}>
                                     <Button variant="contained" onClick={() => setRedirectToUpdate(true)} className={classes.button} endIcon={<Edit className={classes.textHeader} />}><Typography className={classes.textHeader}>Edit</Typography> </Button>
                                 </Link>
                             </Grid>
@@ -161,12 +163,12 @@ function Patient() {
                     <div className={classes.chart}>
                         <Grid container xl={12}>
 
-                            <Grid item xl={10}>
+                            <Grid item xl={9}>
                                 <Chart />
-                                <Typography variant="h6" style={{paddingTop:'30px',paddingBottom:"30px"}}className={classes.textHeader} >PLETH</Typography>
+                                <Typography variant="h6" style={{paddingTop:'30px',paddingBottom:"30px"}} className={classes.textHeader} >PLETH</Typography>
                                 <Chart />
                             </Grid>
-                            <Grid container item xl={2}>
+                            <Grid container item xl={3}>
                                 <Typography color="primary">Hello</Typography>
                             </Grid>
                         </Grid>
