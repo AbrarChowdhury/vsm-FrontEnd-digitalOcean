@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         //margin: '10px 10px 0px 10px',
         // paddingBottom: '40px',
         background: '#0A081A',
-        height: '313px',
+        height: '286px',
         cursor: 'pointer'
     },
     textHeader: {
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
     chartText: {
         // marginBottom:'50px',
-        padding: '20px'
+        padding: '10px 20px 10px 20px'
     },
     chart: {
         padding: '0px 15px 15px 15px'

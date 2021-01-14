@@ -9,7 +9,7 @@ import './cards.styles.scss'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '20px',
+    padding: '10px',
     flexGrow: 1,
   },
 
@@ -27,11 +27,11 @@ function Cards() {
     console.log(text)
   }
 
-  const [data, setData] = useState([{ bed: 1,_id:null }, { bed: 2 , _id:null }, { bed: 3, _id:null }, { bed: 4, _id:null }, { bed: 5, _id:null }, { bed: 6, _id:null }, { bed: 7, _id:null }, { bed: 8, _id:null }, { bed: 9, _id:null },])
+  const [data, setData] = useState([{ bed: 1, _id: null }, { bed: 2, _id: null }, { bed: 3, _id: null }, { bed: 4, _id: null }, { bed: 5, _id: null }, { bed: 6, _id: null }, { bed: 7, _id: null }, { bed: 8, _id: null }, { bed: 9, _id: null },])
 
 
   useEffect(() => {
-   
+
 
     axios.get(`http://localhost:5000/patient`)
       .then(function (response) {
@@ -57,23 +57,23 @@ function Cards() {
       })
   }, [])
 
-  
-  
-  
+
+
+
   return (
 
     <div className={classes.root}>
 
       <Grid container spacing={1}>
 
-        {data.map((data,index) =>
+        {data.map((data, index) =>
 
-          <Grid key={index} item xs={4}>
+          <Grid key={index} item xs={12} sm={12} md={6} lg={4} xl={4} >
             <Card data={data} />
           </Grid>
         )}
 
-        
+
       </Grid>
 
     </div>
