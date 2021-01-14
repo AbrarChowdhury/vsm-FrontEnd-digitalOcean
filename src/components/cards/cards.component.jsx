@@ -64,7 +64,7 @@ function Cards() {
 
     <div className={classes.root}>
 
-      <Grid container>
+      <Grid container spacing={1}>
 
         {data.map((data,index) =>
 
