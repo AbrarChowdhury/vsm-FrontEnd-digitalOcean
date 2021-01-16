@@ -46,9 +46,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px 40px 40px 40px'
   },
   button: {
-    
-    width:'100px',
-    margin:'10px 10px 0px 0px',
+
+    width: '100px',
+    margin: '10px 10px 0px 0px',
     // marginRight: '60px',
     // padding: '05px 20px 05px 20px',
     backgroundColor: "#FFFFFF",
@@ -60,11 +60,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#91989A',
     },
     color: 'white',
-    width:'100px',
-    margin:'10px 10px 0px 0px',
+    width: '100px',
+    margin: '10px 10px 0px 0px',
     // marginRight: '60px',
     // padding: '05px 20px 05px 20px',
-    
+
   },
   ecgTexts: {
     paddingLeft: '20px'
@@ -107,14 +107,14 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     paddingTop: '30px'
   },
-  input:{
-    width:'140px',
+  input: {
+    width: '140px',
     color: "white",
     '& fieldset': {
       borderColor: '#64D7EB',
       borderWidth: "0.5px",
     },
-    
+
 
 
   }
@@ -125,30 +125,36 @@ const useStyles = makeStyles((theme) => ({
 
 )
 
-const ENDPOINT = 'http://localhost:5000/';
+const ENDPOINT = 'http://localhost:5000';
 let socket;
 
 
-function UpdatePatientForm({ bed, name, age, sex }) {
+function UpdatePatientForm({ name, age, sex }) {
 
   const classes = useStyles()
+  let { bed } = useParams();
 
-  const initialState = { name: name, bed: bed, age: age, sex: sex }
+  const initialState = { name: name,  age: age, sex: sex }
 
   const [formData, setFormData] = useState(initialState)
   const [patient, setPatient] = useState({})
 
-  useEffect(async () => {
-    const result = await axios(
-      `${ENDPOINT}patient/${bed}`,
-    );
-    setPatient(result.data);
-
-  });
 
   useEffect(() => {
     socket = io(ENDPOINT)
-    console.log('stateChanged')
+    console.log(bed)
+
+    axios.get(`http://localhost:5000/patient/${bed}`)
+      .then(function (response) {
+        console.log("hello");
+        console.log(response.data);
+        setPatient(response.data);
+      })
+      .catch(function (error) {
+        console.log("hello");
+        console.log(error);
+      });
+
   }, [])
 
   useEffect(() => {
@@ -188,50 +194,50 @@ function UpdatePatientForm({ bed, name, age, sex }) {
             <Grid container xs={12}>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Bed No: </Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"hello"}></TextField>
-                <Typography variant="h6" className={classes.textBody}>{patient.bed}</Typography>
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.bed}></TextField>
+             
               </Grid>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Patient Name:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"hello"}></TextField>
-                <Typography variant="h6" className={classes.textBody}>{patient.name}</Typography>
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.name}></TextField>
+                
               </Grid>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Age:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"hello"}></TextField>
-                <Typography variant="h6" className={classes.textBody}>{patient.age}</Typography>
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.age}></TextField>
+               
               </Grid>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Sex:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"hello"}></TextField>
-                <Typography variant="h6" className={classes.textBody}>{patient.sex}</Typography>
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.sex}></TextField>
+               
               </Grid>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Temp:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"hello"}></TextField>
-                <Typography variant="h6" className={classes.textBody}>{patient.sex}</Typography>
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.age}></TextField>
+             
               </Grid>
               <Grid item xs={1} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Admission-date:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"22/11/2020"}></TextField>
-                
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={"22/11/2020"}></TextField>
+
               </Grid>
-              <Grid item xs={1} style={{maxWidth:'80px'}}className={classes.textHeader1}>
+              <Grid item xs={1} style={{ maxWidth: '80px' }} className={classes.textHeader1}>
                 <Typography variant="h6" className={classes.textHeader}>Diagnosis:</Typography>
-                <TextField variant="outlined" InputProps={{className: classes.input}} value={"22/11/2020"}></TextField>
-               
+                <TextField variant="outlined" InputProps={{ className: classes.input }} value={"22/11/2020"}></TextField>
+
 
               </Grid>
-              
 
 
-                <Link style={{ textDecoration: 'none' }} to={'/' + patient.bed}>
-                  <Button variant="contained" className={classes.button} >Save </Button>
-                </Link>
-                <Link style={{ textDecoration: 'none' }} to={'/' + patient.bed}>
-                  <Button variant="contained" className={classes.buttonCancel} >Cancel </Button>
-                </Link>
-           
+
+              <Link style={{ textDecoration: 'none' }} to={'/' + patient.bed}>
+                <Button variant="contained" className={classes.button} >Save </Button>
+              </Link>
+              <Link style={{ textDecoration: 'none' }} to={'/' + patient.bed}>
+                <Button variant="contained" className={classes.buttonCancel} >Cancel </Button>
+              </Link>
+
 
               {/* <Grid item xs={6}>
                             <UpdatePatientForm name={patient.name} age={patient.age} sex={patient.sex} bed={patient.bed} />
