@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.up('lg')]: {
             float: 'left',
-            maxWidth: '-webkit-fill-available',
+            height: '-webkit-fill-available',
         },
         [theme.breakpoints.up('xl')]: {
             float: 'left',
-            maxWidth: '-webkit-fill-available',
+            height: '969px',
         },
     },
     img1: {
@@ -52,11 +52,11 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('lg')]: {
             maxHeight: '141px',
             maxWidth: '111px',
-            paddingLeft: '50px',
+            paddingLeft: '65px',
             textAlign: 'left'
         },
         [theme.breakpoints.up('xl')]: {
-            paddingTop:'40px',
+            paddingTop: '40px',
             maxHeight: '141px',
             maxWidth: '111px',
             paddingLeft: '70px',
@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
             width: 140,
             padding: '0 40px',
             margin: '30px',
-            marginLeft: '310px',
+            marginLeft: '375px',
         },
         [theme.breakpoints.up('xl')]: {
             background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)',
@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     text: {
-        paddingTop:'20px',
+        paddingTop: '20px',
         paddingLeft: '90px',
         textAlign: 'left',
 
@@ -110,8 +110,8 @@ const useStyles = makeStyles((theme) => ({
     textField: {
         [theme.breakpoints.up('lg')]: {
             marginTop: '30px',
-            marginLeft: '50px',
-            width: '469px'
+            marginLeft: '90px',
+            width: '420px'
         },
         [theme.breakpoints.up('xl')]: {
             marginTop: '30px',
@@ -122,23 +122,53 @@ const useStyles = makeStyles((theme) => ({
 
     },
     bottomText: {
-        textAlign: 'right',
-        position: 'absolute',
-        bottom: '40px',
-        right: '100px',
+        [theme.breakpoints.up('lg')]: {
+            textAlign: 'right',
+            position: 'absolute',
+            bottom: '40px',
+            right: '100px',
+            // textAlign: 'left',
+        },
+        [theme.breakpoints.up('xl')]: {
+            textAlign: 'right',
+            position: 'absolute',
+            bottom: '40px',
+            right: '100px',
+            // textAlign: 'left',
+        },
+       
 
     },
     bottomImg: {
-        textAlign: 'right',
-        position: 'absolute',
-        bottom: 0,
-        right: 0,
-        maxHeight: '141px',
-        maxWidth: '111px',
-        // paddingLeft: '35px',
-        // textAlign: 'left',
+        [theme.breakpoints.up('md')]: {
+            maxHeight: '141px',
+            maxWidth: '111px',
+        },
+        [theme.breakpoints.up('lg')]: {
+            textAlign: 'right',
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            maxHeight: '141px',
+            maxWidth: '111px',
+            paddingLeft: '550px',
+            // paddingBottom: '20px',
+            // textAlign: 'left',
+        },
+        [theme.breakpoints.up('xl')]: {
+            textAlign: 'right',
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            maxHeight: '141px',
+            maxWidth: '111px',
+            // paddingLeft: '35px',
+            // textAlign: 'left',
+        },
 
-    }
+
+    },
+
 
 
 })
@@ -203,10 +233,10 @@ function SignInForm() {
 
                     <Button onClick={clickSubmit} className={classes.btn}>Log In</Button>
                     <br></br>
-                   
+
                     <Typography display="block" className={classes.bottomText} variant="subtitle"> Powered By:</Typography>
                     <span>
-                        <img  className={classes.bottomImg} src={BioforgeLogo} />
+                        <img className={classes.bottomImg} src={BioforgeLogo} />
                     </span>
                 </Grid>
             </Grid>

@@ -15,7 +15,8 @@ import { Redirect, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
 import Edit from '@material-ui/icons/Edit'
 import { sizing } from '@material-ui/system';
-
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 const ENDPOINT = 'http://localhost:5000/';
 let socket;
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '20px 20px 0px 20px',
         // paddingBottom: '40px',
         background: '#0A081A',
-        maxHeight: '784px'
+        maxHeight: '840px'
     },
     textHeader: {
         color: '#64D7EB'
@@ -49,42 +50,50 @@ const useStyles = makeStyles((theme) => ({
         padding: '20px 40px 40px 40px'
     },
     button: {
-        marginLeft:'20px',
+        marginLeft: '20px',
         padding: '05px 20px 05px 20px',
         backgroundColor: "#FFFFFF"
     },
-    ecgTexts:{
-        paddingLeft:'20px'
+    ecgTexts: {
+        paddingLeft: '20px'
     },
     greenHeaders: {
         color: "#5FFF2D",
     },
-    greenHeadersNumbers:{
+    greenHeadersNumbers: {
         color: "#5FFF2D",
-        textAlign:'center',
-        fontSize:'5rem',
-        paddingTop:'60px'
-       
+        textAlign: 'center',
+        fontSize: '5rem',
+        paddingTop: '60px'
+
     },
-    greenBottoms:{
+    greenBottoms: {
         color: "#5FFF2D",
-        paddingTop:'70px'
+        paddingTop: '70px'
     },
-    purpleHeader:{
-        color:'#FF1EFD'
+    purpleHeader: {
+        color: '#FF1EFD'
     },
-    blueHeaders:{
-        color:'#00E5FF',
+    blueHeaders: {
+        color: '#00E5FF',
     },
-    blueHeadersNumbers:{
+    blueHeadersNumbers: {
         color: "#00E5FF",
-        textAlign:'center',
+        textAlign: 'center',
         // fontSize:'5rem',
-        
+
     },
-    blueBottoms:{
+    blueBottoms: {
         color: "#00E5FF",
-        paddingTop:'40px'
+        paddingTop: '40px'
+    },
+    arrowIcon: {
+        fontSize: '6rem',
+        color: "#FF1EFD"
+    },
+    bottomGraphs: {
+        justifyContent: 'center',
+        paddingTop: '30px'
     }
 
 
@@ -198,21 +207,20 @@ function Patient() {
 
                     <div className={classes.chart}>
                         <Grid container xs={12}>
-
                             <Grid item xs={9}>
                                 <Chart />
                                 <Typography variant="h6" style={{ paddingTop: '30px', paddingBottom: "30px" }} className={classes.textHeader} >PLETH</Typography>
                                 <Chart />
                             </Grid>
 
-                       
+
                             <Grid item className={classes.ecgTexts} container spacing={1} xs={3}>
 
                                 <Grid item xs={1}>
                                     <Typography variant="h5" className={classes.greenHeaders} >HR</Typography>
                                     <Typography variant="h5" className={classes.greenHeaders} >150</Typography>
-                                    <Typography variant="h5"  className={classes.greenBottoms} >50</Typography>
-                                    
+                                    <Typography variant="h5" className={classes.greenBottoms} >50</Typography>
+
                                 </Grid>
 
                                 <Grid item xs={5}>
@@ -222,23 +230,23 @@ function Patient() {
                                 <Grid item xs={3}>
                                     <Typography variant="h5" className={classes.greenHeaders} >PVC</Typography>
                                     <Typography variant="h5" className={classes.greenHeaders} >ST-I</Typography>
-                                    <Typography variant="h5"  className={classes.greenBottoms} >ST-II</Typography>
+                                    <Typography variant="h5" className={classes.greenBottoms} >ST-II</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Typography variant="h5" className={classes.greenHeaders} >0</Typography>
                                     <Typography variant="h5" className={classes.greenHeaders} >?</Typography>
-                                    <Typography variant="h5"  className={classes.greenBottoms} >-0.8</Typography>
+                                    <Typography variant="h5" className={classes.greenBottoms} >-0.8</Typography>
                                 </Grid>
 
-                                <Grid item style={{maxHeight:'10px'}} xs={12}>
-                                <Typography variant="h4" className={classes.purpleHeader} >NBP 109/70 (79)</Typography>
+                                <Grid item style={{ maxHeight: '10px' }} xs={12}>
+                                    <Typography variant="h4" className={classes.purpleHeader} >NBP 109/70 (79)</Typography>
                                 </Grid>
 
                                 <Grid item xs={1}>
                                     <Typography variant="h5" className={classes.blueHeaders} >Sp02</Typography>
-                                    
-                                    <Typography variant="h5"  className={classes.blueBottoms} >Pulse</Typography>
-                                    
+
+                                    <Typography variant="h5" className={classes.blueBottoms} >Pulse</Typography>
+
                                 </Grid>
 
                                 <Grid item xs={5}>
@@ -251,17 +259,42 @@ function Patient() {
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-III</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-aVR</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >ST-aVL</Typography>
-                                    <Typography variant="h5"  className={classes.blueHeaders} >ST-aVF</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >ST-aVF</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
                                     <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                                    <Typography variant="h5"  className={classes.blueHeaders} >?</Typography>
+                                    <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
                                 </Grid>
 
                             </Grid>
-                            
+
+
+                            <Grid xl={12} className={classes.bottomGraphs} container spacing={3}>
+                                <Grid item xl={1}>
+                                    <ArrowLeftIcon className={classes.arrowIcon}></ArrowLeftIcon>
+                                </Grid>
+                                <Grid item xl={4} style={{ maxWidth: '360px', }} >
+                                    <Chart />
+                                </Grid>
+                                <Grid item xl={4} style={{ maxWidth: '360px', }}>
+                                    <Chart />
+                                </Grid>
+                                <Grid item xl={4} style={{ maxWidth: '360px', }}>
+                                    <Chart />
+                                </Grid>
+                                <Grid item xl={4} style={{ maxWidth: '360px', }}>
+                                    <Chart />
+                                </Grid>
+                                <Grid item xl={1}>
+                                    <ArrowRightIcon className={classes.arrowIcon}></ArrowRightIcon>
+                                </Grid>
+
+                            </Grid>
+
+
+
 
                         </Grid>
 
