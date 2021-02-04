@@ -18,13 +18,12 @@ import { sizing } from '@material-ui/system';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const ENDPOINT = 'http://localhost:5000/';
+const ENDPOINT = 'http://localhost:8080/';
 let socket;
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-
     },
     chartBox: {
         margin: '20px 20px 0px 20px',
@@ -123,23 +122,28 @@ function Patient() {
     }
 
     useEffect(async () => {
-        const result = await axios(
+        let result = await axios.get(
             `${ENDPOINT}patient/${bed}`,
-        );
+        )
+        console.log("result : ", result.data)
         setPatient(result.data);
+    },[]);
 
-    });
+    // useEffect(()=>{
+    //     async function getUser() {
+    //         try {
+    //           const response = await axios.get('/user?ID=12345');
+    //           console.log(response);
+    //         } catch (error) {
+    //           console.error(error);
+    //         }
+    //       }
+    // },[])
 
-    useEffect(() => {
-        socket = io(ENDPOINT)
-        console.log('stateChanged')
-    }, [])
-
-    useEffect(() => {
-        socket.on('message', (message) => {
-            console.log(message)
-        })
-    }, [])
+    // useEffect(() => {
+    //     socket = io(ENDPOINT)
+    //     console.log('stateChanged')
+    // }, [])
 
 
     // if (redirectToUpdate == true) {

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import axios from "axios"
 import { useHistory } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
@@ -97,28 +98,27 @@ const useStyles = makeStyles((theme) => ({
 })
 
 )
-
-function Card(props) {
+const ENDPOINT = 'http://localhost:8080/';
+function Card({ bed }) {
     const classes = useStyles()
-
-    const [data, setData] = useState(props.data)
-
     let history = useHistory()
-
-    const redirect = () => {
-        history.push(`/${data.bed}`)
-    }
-
+    const [patientData, setPatientData] = useState({})
     useEffect(() => {
-        console.log(data);
-
-    }, [])
-
-
+        axios.get(`${ENDPOINT}patient/${bed}`)
+        .then((response)=>{
+            console.log(response.data)
+            if(response.data){
+                setPatientData(response.data)
+            }
+        })
+        .catch((error)=>{
+            console.log(error)
+        })
+    },[]);
 
     return (
 
-        <div className={classes.chartBox} onClick={redirect}>
+        <div className={classes.chartBox}>
 
             <div className={classes.chartText}>
                 <Grid container xs={12}>
@@ -140,25 +140,25 @@ function Card(props) {
                     </Grid>
                     <Grid item xs={1} className={classes.textHeader1}>
                         <Typography variant="subtitle" className={classes.textHeader}>Temp:</Typography>
-
+DZS1WQA
 
                     </Grid>
 
                     <NotificationsActiveIcon className={classes.notificationIcon}></NotificationsActiveIcon>
                     <Grid item xs={2} style={{ marginRight: '30px' }}>
-                        <Typography variant="subtitle" className={classes.textBody}>1</Typography>
+                        <Typography variant="subtitle" className={classes.textBody}>{bed}</Typography>
 
                     </Grid>
                     <Grid item xs={3} style={{ marginRight: '32px' }}>
-                        <Typography variant="subtitle" className={classes.textBody}>Abrar Choudhury</Typography>
+                        <Typography variant="subtitle" className={classes.textBody}>{patientData.name}</Typography>
 
                     </Grid>
                     <Grid item xs={1} style={{ marginRight: '30px' }}>
-                        <Typography variant="subtitle" className={classes.textBody}>age</Typography>
+                        <Typography variant="subtitle" className={classes.textBody}>{patientData.age}</Typography>
 
                     </Grid>
                     <Grid item xs={1} style={{ marginRight: '30px' }}>
-                        <Typography variant="subtitle" className={classes.textBody}>sex</Typography>
+                        <Typography variant="subtitle" className={classes.textBody}>{patientData.sex}</Typography>
 
                     </Grid>
                     <Grid item xs={1}>

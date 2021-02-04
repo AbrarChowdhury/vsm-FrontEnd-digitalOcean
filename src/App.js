@@ -25,7 +25,8 @@ function App() {
             <Route exact path="/remove-patient">
               <RemovePatientForm />
             </Route>
-            <Route exact path="/:bed" children={<Patient />}>
+            <Route exact path="/:bed">
+              <Patient/>
             </Route>
             <Route exact path="/updatePatient/:bed" children={<UpdatePatient />}>
             </Route>
