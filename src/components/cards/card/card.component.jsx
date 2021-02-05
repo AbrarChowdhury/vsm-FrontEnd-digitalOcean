@@ -99,10 +99,16 @@ const useStyles = makeStyles((theme) => ({
 
 )
 const ENDPOINT = 'http://localhost:8080/';
+const wss = new WebSocket('ws://localhost:8080');
 function Card({ bed }) {
     const classes = useStyles()
     let history = useHistory()
     const [patientData, setPatientData] = useState({})
+    const [temp, setTemp]=useState([0])
+    const [heartRate, setHeartRate]=useState([0])
+    const [ecg, setEcg]=useState([0])
+    const [spo2, setSpo2]=useState([0])
+
     useEffect(() => {
         axios.get(`${ENDPOINT}patient/${bed}`)
         .then((response)=>{
@@ -114,6 +120,16 @@ function Card({ bed }) {
         .catch((error)=>{
             console.log(error)
         })
+        wss.addEventListener('message', (message) => {
+            if(JSON.parse(message.data).bedNumber==bed){
+                console.log("hoise: ", JSON.parse(message.data))
+                setTemp(JSON.parse(message.data).temp)
+                setHeartRate(JSON.parse(message.data).heartRate)
+                setEcg(JSON.parse(message.data).ecg)
+                setSpo2(JSON.parse(message.data).spo2)
+                // console.log(temp)
+            } 
+        });
     },[]);
 
     return (
@@ -162,7 +178,7 @@ DZS1WQA
 
                     </Grid>
                     <Grid item xs={1}>
-                        <Typography variant="subtitle" className={classes.textBody}>temp</Typography>
+                        <Typography variant="subtitle" className={classes.textBody}>{temp[temp.length-1]}</Typography>
 
                     </Grid>
                     <Grid item xs={1}>
@@ -193,7 +209,7 @@ DZS1WQA
                         </Grid>
 
                         <Grid item xs={4}>
-                            <Typography variant="h2" className={classes.greenHeadersNumbers} >120</Typography>
+                            <Typography variant="h2" className={classes.greenHeadersNumbers} >{heartRate[heartRate.length-1]}</Typography>
                         </Grid>
                         <Grid item xs={3}>
                             <Typography variant="h6" className={classes.greenHeaders} >PVC</Typography>
@@ -216,8 +232,8 @@ DZS1WQA
                         </Grid>
 
                         <Grid item xs={4}>
-                            <Typography variant="h3" className={classes.blueHeadersNumbers} >97</Typography>
-                            <Typography variant="h3" className={classes.blueHeadersNumbers} >118</Typography>
+                            <Typography variant="h3" className={classes.blueHeadersNumbers} >{spo2[spo2.length-1]}</Typography>
+                            <Typography variant="h3" className={classes.blueHeadersNumbers} >{ecg[ecg.length-1]}</Typography>
                         </Grid>
 
                         <Grid item xs={4}>
