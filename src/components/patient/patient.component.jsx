@@ -17,8 +17,9 @@ import Edit from '@material-ui/icons/Edit'
 import { sizing } from '@material-ui/system';
 import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import api from '../../context/api.context'
 
-const ENDPOINT = 'http://localhost:8080/';
+const ENDPOINT = `http://${api}/`;
 let socket;
 
 const useStyles = makeStyles((theme) => ({
@@ -100,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
 })
 
 )
-
+const wss = new WebSocket(`ws://${api}`);
 function Patient() {
     const classes = useStyles()
     let { bed } = useParams();
@@ -108,7 +109,12 @@ function Patient() {
     const [inputValue, setInputValue] = useState('')
     const [vsmData, setVsmData] = useState('')
     const [redirectToUpdate, setRedirectToUpdate] = useState(false)
-
+    
+    const [patientData, setPatientData] = useState({})
+    const [temp, setTemp]=useState([0])
+    const [heartRate, setHeartRate]=useState([0])
+    const [ecg, setEcg]=useState([0])
+    const [spo2, setSpo2]=useState([0])
 
     const handleChange = (e) => {
         setInputValue(e.target.value)
@@ -125,31 +131,18 @@ function Patient() {
         let result = await axios.get(
             `${ENDPOINT}patient/${bed}`,
         )
-        console.log("result : ", result.data)
         setPatient(result.data);
+        wss.addEventListener('message', (message) => {
+            if(JSON.parse(message.data).bedNumber==bed){
+                console.log("hoise: ", JSON.parse(message.data))
+                setTemp(JSON.parse(message.data).temp)
+                setHeartRate(JSON.parse(message.data).heartRate)
+                setEcg(JSON.parse(message.data).ecg)
+                setSpo2(JSON.parse(message.data).spo2)
+                // console.log(temp)
+            } 
+        });
     },[]);
-
-    // useEffect(()=>{
-    //     async function getUser() {
-    //         try {
-    //           const response = await axios.get('/user?ID=12345');
-    //           console.log(response);
-    //         } catch (error) {
-    //           console.error(error);
-    //         }
-    //       }
-    // },[])
-
-    // useEffect(() => {
-    //     socket = io(ENDPOINT)
-    //     console.log('stateChanged')
-    // }, [])
-
-
-    // if (redirectToUpdate == true) {
-    //     return <Redirect to=`/${bed}/updatePatient` />
-    // }
-
     return (
         <>
             <div className={classes.root}>
@@ -228,7 +221,7 @@ function Patient() {
                                 </Grid>
 
                                 <Grid item xs={5}>
-                                    <Typography variant="h2" className={classes.greenHeadersNumbers} >120</Typography>
+                                    <Typography variant="h2" className={classes.greenHeadersNumbers} >{heartRate[heartRate.length-1]}</Typography>
                                 </Grid>
 
                                 <Grid item xs={3}>
@@ -254,9 +247,9 @@ function Patient() {
                                 </Grid>
 
                                 <Grid item xs={5}>
-                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >120</Typography>
+                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >{spo2[spo2.length-1]}</Typography>
                                     <br></br>
-                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >120</Typography>
+                                    <Typography variant="h3" className={classes.blueHeadersNumbers} >{ecg[ecg.length-1]}</Typography>
                                 </Grid>
 
                                 <Grid item xs={3}>

@@ -10,7 +10,7 @@ import Edit from '@material-ui/icons/Edit'
 import { Redirect, Link } from 'react-router-dom'
 import { Typography } from '@material-ui/core'
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
-
+import api from '../../../context/api.context'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
@@ -98,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
 })
 
 )
-const ENDPOINT = 'http://localhost:8080/';
-const wss = new WebSocket('ws://localhost:8080');
+const ENDPOINT = `http://${api}/`;
+const wss = new WebSocket(`ws://${api}`);
 function Card({ bed }) {
     const classes = useStyles()
     let history = useHistory()
