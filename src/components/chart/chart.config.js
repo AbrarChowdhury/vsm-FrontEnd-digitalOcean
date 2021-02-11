@@ -13,6 +13,9 @@ const options = {
             tension: 0
         }
     },
+    animation: {
+        duration: 0
+    }
     
 }
 
