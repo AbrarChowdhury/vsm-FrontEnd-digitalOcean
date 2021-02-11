@@ -205,9 +205,9 @@ function Patient() {
                     <div className={classes.chart}>
                         <Grid container xs={12}>
                             <Grid item xs={9}>
-                                <Chart />
+                                <Chart bed={bed}/>
                                 <Typography variant="h6" style={{ paddingTop: '30px', paddingBottom: "30px" }} className={classes.textHeader} >PLETH</Typography>
-                                <Chart />
+                                <Chart bed={bed}/>
                             </Grid>
 
 

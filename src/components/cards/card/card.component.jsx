@@ -122,7 +122,7 @@ function Card({ bed }) {
         })
         wss.addEventListener('message', (message) => {
             if(JSON.parse(message.data).bedNumber==bed){
-                console.log("hoise: ", JSON.parse(message.data))
+                // console.log("hoise: ", JSON.parse(message.data))
                 setTemp(JSON.parse(message.data).temp)
                 setHeartRate(JSON.parse(message.data).heartRate)
                 setEcg(JSON.parse(message.data).ecg)
@@ -156,7 +156,7 @@ function Card({ bed }) {
                     </Grid>
                     <Grid item xs={1} className={classes.textHeader1}>
                         <Typography variant="subtitle" className={classes.textHeader}>Temp:</Typography>
-DZS1WQA
+
 
                     </Grid>
 
@@ -194,9 +194,9 @@ DZS1WQA
                 <Grid container xs={12}>
 
                     <Grid item xs={8}>
-                        <Chart />
+                        <Chart bed={bed}/>
                         <Typography variant="h6" style={{ paddingTop: '10px', paddingBottom: "10px" }} className={classes.textHeader} >PLETH</Typography>
-                        <Chart />
+                        <Chart bed={bed}/>
                     </Grid>
 
 

@@ -1,18 +1,29 @@
-import React from 'react'
+import React,{ useState, useEffect } from 'react'
+import api from '../../context/api.context'
 import { Scatter } from 'react-chartjs-2'
 import './chart.styles.scss'
 import config from './chart.config'
+const wss = new WebSocket(`ws://${api}`);
+function Chart({bed}) {
+const [ecg, setEcg] = useState([])
 
-function Chart() {
-    function getRandomInt(min, max) {
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+    useEffect(() => {
+        wss.addEventListener('message', (message) => {
+            if(JSON.parse(message.data).bedNumber==bed){
+                console.log("hoise: ", JSON.parse(message.data))
+                setEcg(JSON.parse(message.data).ecg)
+                console.log("chart ecg", ecg)
+            } 
+        });
+    },[]);
+
     function getData(){
         let data=[]
         for(let i=0; i<10; i++){
-            data.push({ x:i, y:getRandomInt(0,300)})
+            setTimeout(()=>{
+                data.push({ x:i, y: ecg[i] })
+                // if(data.length>=ecg.length){ data.pop() }
+            }, 100);
         }
         return data
     }
@@ -25,7 +36,6 @@ function Chart() {
                 height={50}
                 data= {data}
                 options={config.options}
-                
             />
             
         </div>

@@ -13,6 +13,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import api from '../../context/api.context'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,8 +67,7 @@ function RemovePatientForm() {
 
   const classes = useStyles()
 
-  const initialState = { name: '', bed: '', age: '', sex: '' }
-  const [formData, setFormData] = useState(initialState)
+  const [name, setName] = useState('')
   const [open, setOpen] = useState(false);
   const [bedIndex, setBedIndex] = useState('');
 
@@ -85,17 +85,13 @@ function RemovePatientForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("formData: ", formData)
-
-    axios.post('http://localhost:5000/patient', formData)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-    setFormData(initialState)
+    // axios.post('http://localhost:5000/patient', formData)
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
 
   }
 
@@ -103,6 +99,12 @@ function RemovePatientForm() {
     setOpen(true);
     index = index + 1
     setBedIndex(index)
+    axios.get(`http://${api}/patient/${index}`)
+      .then((response)=>{
+        console.log(response.data)
+        setName(response.data.name)
+      })
+      .catch((error)=>console.log(error))
   };
 
   const handleClose = () => {
