@@ -1,24 +1,8 @@
 .Card{
-    background: #0A081A;
-    text-align: left;
-    padding: 10px;
-    margin: 2px;
-    border-radius: 2px;
-    
-    .white{
-        color:white;
-    }
-    .bold{
-        font-weight: bold;
-    }
-    .green{
-        color:#9EF48F;
-    }
-    .blue{
-        color:#A3EDD6;
+    .padding-right-large{
+        padding-right: 50px;
+        margin-right: 20px;
     }
 }
 .Card:hover {
-    // background: #04139a;
-    cursor: pointer;
 }

@@ -92,9 +92,6 @@ const useStyles = makeStyles((theme) => ({
         padding: '20px',
         height: '25%'
     }
-
-
-
 })
 
 )
@@ -133,8 +130,8 @@ function Card({ bed }) {
     },[]);
 
     return (
-
-        <div className={classes.chartBox}>
+        <div className="Card">
+        <div className={classes.chartBox} >
 
             <div className={classes.chartText}>
                 <Grid container xs={12}>
@@ -193,10 +190,12 @@ function Card({ bed }) {
             <div className={classes.chart}>
                 <Grid container xs={12}>
 
-                    <Grid item xs={8}>
+                    <Grid item xs={8} >
+                        <div className="padding-right-large">
                         <Chart bed={bed}/>
                         <Typography variant="h6" style={{ paddingTop: '10px', paddingBottom: "10px" }} className={classes.textHeader} >PLETH</Typography>
                         <Chart bed={bed}/>
+                        </div>
                     </Grid>
 
 
@@ -262,7 +261,7 @@ function Card({ bed }) {
         </div>
 
 
-
+    </div>
     )
 }
 
