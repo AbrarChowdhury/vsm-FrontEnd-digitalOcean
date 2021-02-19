@@ -27,12 +27,14 @@
         grid-template-columns:1fr 1fr;
         align-items: center;
         grid-gap: 10px;
+        max-width: 70px;
     }
     .hr-grid{
         display: grid;
         justify-content: start;
         grid-template-columns: 1fr 1fr;
         grid-row: 90px 90px 90px;
+        max-width: 70px;
 
         .title{
             margin: 0!important;

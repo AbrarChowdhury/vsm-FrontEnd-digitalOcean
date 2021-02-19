@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import Grid from '@material-ui/core/Grid'
+import Collapse from '@material-ui/core/Collapse'
 import './patient.styles.scss'
 import Chart from '../chart/chart.component'
 import axios from 'axios'
@@ -21,12 +22,17 @@ function Patient() {
     const [inputValue, setInputValue] = useState('')
     const [vsmData, setVsmData] = useState('')
     const [redirectToUpdate, setRedirectToUpdate] = useState(false)
-    
     const [patientData, setPatientData] = useState({})
     const [temp, setTemp]=useState([0])
     const [heartRate, setHeartRate]=useState([0])
     const [ecg, setEcg]=useState([0])
     const [spo2, setSpo2]=useState([0])
+
+    const [checked, setChecked] = useState(false);
+    const handleChange = () => {
+        setChecked((prev) => !prev);
+    };
+
 
     useEffect(async () => {
         let result = await axios.get(
@@ -50,64 +56,68 @@ function Patient() {
                 <div className="Patient">
                     <Grid container xs={12}>
                         <Grid  item xs={12}>
-                            <Typography variant="h6" className="responsive-float">Name: </Typography>
-                            <Typography variant="h6" className="responsive-float">{patient.name}</Typography>
+                            <Typography variant="p" className="responsive-float">Name: </Typography>
+                            <Typography variant="p" className="responsive-float">{patient.name}</Typography>
                         </Grid>
-                        <Grid  item xs={4}>
-                            <Typography variant="h6" className="responsive-float">Bed: </Typography>
-                            <Typography variant="h6" className="responsive-float">{patient.bed}</Typography>
+                        <Grid  item xs={6}>
+                            <Typography variant="p" className="responsive-float">Bed: </Typography>
+                            <Typography variant="p" className="responsive-float">{patient.bed}</Typography>
                         </Grid>
-                        <Grid  item xs={4}>
-                            <Typography variant="h6" className="responsive-float">Temp:</Typography>
-                            <Typography variant="h6" className="responsive-float">{temp[temp.length-1]}</Typography>
+                        <Grid  item xs={6}>
+                            <Typography variant="p" className="responsive-float">Temp:</Typography>
+                            <Typography variant="p" className="responsive-float">{temp[temp.length-1]}</Typography>
                         </Grid>
-                        <Grid  item xs={4}>
-                            <Typography variant="h6" className="responsive-float">Age:</Typography>
-                            <Typography variant="h6" className="responsive-float">{patient.age}</Typography>
+                        <Grid  item xs={12}><br/></Grid>
+                        <Grid  item xs={6}>
+                            <Typography onClick={handleChange} variant="p" className="responsive-float">View {checked?"less":"more"}...</Typography>
                         </Grid>
-                        <Grid  item xs={4}>
-                            <Typography variant="h6" className="responsive-float">Sex:</Typography>
-                            <Typography variant="h6" className="responsive-float">{patient.sex}</Typography>
-                        </Grid>
-                        <Grid  item xs={8} >
-                            <Typography variant="h6" className="responsive-float">Admission:</Typography>
-                            <Typography variant="h6" className="responsive-float">{"22/11/2020"}</Typography>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <Typography variant="h6" className="responsive-float">Diagnosis:</Typography>
-                            <Typography variant="h6" className="responsive-float">Dr.xyz</Typography>
-                        </Grid>
-                        <Grid  item xs={12}>
-                            <Button className="full-width" variant="contained" onClick={() => history.push(`/updatePatient/${bed}`)} endIcon={<Edit/>}>
+                        <Grid  item xs={6}>
+                            <Button variant="contained" onClick={() => history.push(`/updatePatient/${bed}`)} endIcon={<Edit/>}>
                                 <Typography>Edit</Typography>
                             </Button>
                         </Grid>
+                            <Collapse in={checked}>
+                                <br/>
+                                <Grid  item xs={12}>
+                                    <Typography variant="p" className="responsive-float">Age:</Typography>
+                                    <Typography variant="p" className="responsive-float">{patient.age}</Typography>
+                                </Grid>
+                                <Grid  item xs={12}>
+                                    <Typography variant="p" className="responsive-float">Sex:</Typography>
+                                    <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
+                                </Grid>
+                                <Grid  item xs={12} >
+                                    <Typography variant="p" className="responsive-float">Admission:</Typography>
+                                    <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
+                                </Grid>
+                                <Grid item xs={12}>
+                                    <Typography variant="p" className="responsive-float">Diagnosis:</Typography>
+                                    <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
+                                </Grid>
+                            </Collapse>
                     </Grid>
 
-                    <div>
-                        <Grid container xs={12}>
-                            <Grid item>
-                                {/*<Chart bed={bed}/>*/}
-                                <Typography variant="h6" style={{ paddingTop: '30px', paddingBottom: "30px" }}>PLETH</Typography>
-                                {/*<Chart bed={bed}/>*/}
-                            </Grid>
-                            
-                                <div className="green hr-grid">
-                                    <Typography className="title" variant="p">HR</Typography>
-                                    <Typography className="upper" variant="p">150</Typography>
-                                    <Typography className="lower" variant="p">50</Typography>
-                                    <Typography className="hr" variant="h2">{heartRate[heartRate.length-1]}</Typography>
-                                </div>
-                                <div className="side-by-side blue">
-                                    <Typography variant="h6">Sp02</Typography>
-                                    <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
-                                </div>
-                                <div className="side-by-side blue">    
-                                    <Typography variant="h6">Pulse</Typography>
-                                    <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
-                                </div>
-                            
-                        </Grid>
+                    <div>    
+                        <div className="green hr-grid">
+                            <Typography className="title" variant="p">H-R</Typography>
+                            <Typography className="upper" variant="p">150</Typography>
+                            <Typography className="lower" variant="p">50</Typography>
+                            <Typography className="hr" variant="h2">{heartRate[heartRate.length-1]}</Typography>
+                        </div>
+                        <div className="ecg-chart">
+                            <Chart bed={bed}/>
+                        </div>
+                        <div className="side-by-side blue">
+                            <Typography variant="p">Sp02</Typography>
+                            <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
+                        </div>
+                        <div className="side-by-side blue">    
+                            <Typography variant="p">Pulse</Typography>
+                            <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
+                        </div>
+                        <div className="spo2-chart">
+                            <Chart bed={bed}/>
+                        </div>
                     </div>
                 </div>
             </div>

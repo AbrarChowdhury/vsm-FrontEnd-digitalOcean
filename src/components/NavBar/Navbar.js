@@ -46,7 +46,7 @@ export default function ButtonAppBar() {
         <div className="Navbar">
             <div className="list">
                 <HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/>
-                <span onClick={() => history.push(`/dashboard`)} >VSM Dashboard</span>
+                {/*<span onClick={() => history.push(`/dashboard`)} >VSM Dashboard</span>*/}
                 <span className="white grid-right">{personName}</span>
                 <MenuIcon className="white grid-right" onClick={openDrawer}/>
             </div>
