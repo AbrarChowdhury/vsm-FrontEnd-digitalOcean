@@ -14,6 +14,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 // import Grid from '@material-ui/core/Grid';
 import HomeIcon from '@material-ui/icons/Home';
 import Drawer from '@material-ui/core/Drawer'
+import Divider from '@material-ui/core/Divider'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Button from '@material-ui/core/Button'
@@ -31,21 +32,17 @@ export default function ButtonAppBar() {
     }
     const list = () => (
         <div onClick = {closeDrawer}>
-            <List>
-                <NavLink className="a" to={'/add-patient'}>Add Patient</NavLink>
-                <br/>
-                <NavLink to={'/remove-patient'}>Remove Patient</NavLink>
-                <br/>
-                <hr/>
-                <NavLink to={'/'}>Sign Out</NavLink>
-            </List>
+            <Button className="nav-link" component={NavLink} to={'/add-patient'}>Add Patient</Button>
+            <Button className="nav-link" component={NavLink} to={'/remove-patient'}>Remove Patient</Button>
+            <Divider/>
+            <Button className="nav-link" component={NavLink} to={'/'}>Sign Out</Button>
         </div>
     )
     useEffect(() => {
         setPersonName("Dr. Sarder A. Nayeem")
     }, [])
     return (
-        <div>
+        <div className="nav">
         <div className="Navbar">
             <div className="list">
                 <HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/>

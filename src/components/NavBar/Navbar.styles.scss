@@ -1,9 +1,6 @@
 .Navbar{
     background: linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%);
     padding: 10px;
-    a{
-      color: red !important;
-    }
     .list{
         display: grid;
         grid-template-columns: 22px 120px auto 25px;
@@ -26,4 +23,9 @@
         color:white;
     }
 
+}
+.nav-link{
+        min-width: 175px!important;
+        margin: 0 20px!important;
+        display: block!important;
 }
