@@ -33,31 +33,33 @@
         justify-content: start;
         grid-template-columns: 1fr 1fr;
         grid-row: 90px 90px 90px;
+
+        .title{
+            margin: 0!important;
+            padding: 0!important;
+            grid-column: 1/2;
+            grid-row: 1/2;
+            align-self: end;
+        }
+        .upper{
+            grid-column: 1/2;
+            grid-row: 2/3;
+            align-self: start;
+        }
+        .hr{
+            grid-column: 2/3;
+            grid-row: 2/4;
+            align-self: center;
+            margin: 0!important;
+            padding: 0!important;
+        }
+        .lower{
+            grid-column: 1/2;
+            grid-row:3/4;
+            align-self: center;
+        
+        }
     }
-    .title{
-        margin: 0!important;
-        padding: 0!important;
-        grid-column: 1/2;
-        grid-row: 1/2;
-        align-self: end;
-    }
-    .upper{
-        grid-column: 1/2;
-        grid-row: 2/3;
-        align-self: start;
-    }
-    .hr{
-        grid-column: 2/3;
-        grid-row: 2/4;
-        align-self: center;
-        margin: 0!important;
-        padding: 0!important;
-    }
-    .lower{
-        grid-column: 1/2;
-        grid-row:3/4;
-        align-self: center;
     
-    }
 
 }

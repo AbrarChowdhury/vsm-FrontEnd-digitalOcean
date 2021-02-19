@@ -1,0 +1,29 @@
+.Navbar{
+    background: linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%);
+    padding: 10px;
+    a{
+      color: red !important;
+    }
+    .list{
+        display: grid;
+        grid-template-columns: 22px 120px auto 25px;
+        align-items: center;
+        grid-gap: 10px;
+        .grid-left{
+            justify-self: start;
+        }
+        .grid-right{
+            justify-self: end;
+        }
+    }
+    .float-right{
+        float:right;
+    }
+    .float-left{
+        float:left;
+    }
+    .white{
+        color:white;
+    }
+
+}

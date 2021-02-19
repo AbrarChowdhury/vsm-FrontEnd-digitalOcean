@@ -14,13 +14,11 @@ import api from '../../../context/api.context'
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-
     },
     chartBox: {
         //margin: '10px 10px 0px 10px',
         // paddingBottom: '40px',
         background: '#0A081A',
-        height: '286px',
         cursor: 'pointer'
     },
     textHeader: {
@@ -189,74 +187,38 @@ function Card({ bed }) {
 
             <div className={classes.chart}>
                 <Grid container xs={12}>
-
-                    <Grid item xs={8} >
+                    <Grid item xs={10} >
                         <div className="padding-right-large">
-                        <Chart bed={bed}/>
-                        <Typography variant="h6" style={{ paddingTop: '10px', paddingBottom: "10px" }} className={classes.textHeader} >PLETH</Typography>
                         <Chart bed={bed}/>
                         </div>
                     </Grid>
-
-
-                    <Grid item className={classes.ecgTexts} container spacing={1} xs={4}>
-
-                        <Grid item xs={2}>
-                            <Typography variant="h6" className={classes.greenHeaders} >HR</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} gutterBottom >150</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} >50</Typography>
-                        </Grid>
-
-                        <Grid item xs={4}>
-                            <Typography variant="h2" className={classes.greenHeadersNumbers} >{heartRate[heartRate.length-1]}</Typography>
-                        </Grid>
-                        <Grid item xs={3}>
-                            <Typography variant="h6" className={classes.greenHeaders} >PVC</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} gutterBottom>ST-I</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} >ST-II</Typography>
-                        </Grid>
-                        <Grid item xs={2} style={{ paddingLeft: '20px' }} >
-                            <Typography variant="h6" className={classes.greenHeaders} >0</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} gutterBottom>?</Typography>
-                            <Typography variant="h6" className={classes.greenHeaders} >-0.8</Typography>
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Typography variant="h6" className={classes.purpleHeader} >NBP 109/70 (79)</Typography>
-                        </Grid>
-
-                        <Grid item xs={2}>
-                            <Typography variant="h6" className={classes.blueHeaders} gutterBottom >Sp02</Typography>
-                            <Typography variant="h6" className={classes.blueBottoms} >Pulse</Typography>
-                        </Grid>
-
-                        <Grid item xs={4}>
-                            <Typography variant="h3" className={classes.blueHeadersNumbers} >{spo2[spo2.length-1]}</Typography>
-                            <Typography variant="h3" className={classes.blueHeadersNumbers} >{ecg[ecg.length-1]}</Typography>
-                        </Grid>
-
-                        <Grid item xs={4}>
-                            <Typography variant="h5" className={classes.blueHeaders} >ST-III</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >ST-aVR</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >ST-aVL</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >ST-aVF</Typography>
-                        </Grid>
-
-                        <Grid item xs={1}>
-                            <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                            <Typography variant="h5" className={classes.blueHeaders} >?</Typography>
-                        </Grid>
-
-
-
+                    <Grid item xs={2}>
+                        <div className="green hr-grid">
+                            <Typography className="title" variant="p">HR</Typography>
+                            <Typography className="upper" variant="p">150</Typography>
+                            <Typography className="lower" variant="p">50</Typography>
+                            <Typography className="hr" variant="h2">{heartRate[heartRate.length-1]}</Typography>
+                        </div>
                     </Grid>
-
-
                 </Grid>
-
-
+                <Grid container xs={12}>
+                    <Grid item xs={12}><Typography variant="h6" style={{ paddingTop: '10px', paddingBottom: "10px" }} className={classes.textHeader} >PLETH</Typography></Grid>
+                    <Grid item xs={10} >
+                        <div className="padding-right-large">
+                            <Chart bed={bed}/>
+                        </div>
+                    </Grid>
+                    <Grid item xs={2}>
+                        <div className="side-by-side blue">
+                            <Typography variant="h6">Sp02</Typography>
+                            <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
+                        </div>
+                        <div className="side-by-side blue">    
+                            <Typography variant="h6">Pulse</Typography>
+                            <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
+                        </div>
+                    </Grid>
+                </Grid>
             </div>
         </div>
 

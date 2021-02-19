@@ -45,9 +45,9 @@ function Patient() {
         });
     },[]);
     return (
-            <div className="Patient">
-                {/*<Navbar>*/}
-                <div>
+            <div>
+                <Navbar/>
+                <div className="Patient">
                     <Grid container xs={12}>
                         <Grid  item xs={12}>
                             <Typography variant="h6" className="responsive-float">Name: </Typography>

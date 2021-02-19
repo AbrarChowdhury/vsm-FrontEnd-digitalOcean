@@ -1,96 +1,84 @@
 import React, { useState, useEffect } from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+// import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+// import AppBar from '@material-ui/core/AppBar';
+// import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Avatar from '@material-ui/core/Avatar'
-import picture from '../../assets/Login.png'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { Link, NavLink } from 'react-router-dom'
+// import Avatar from '@material-ui/core/Avatar'
+// import picture from '../../assets/doctor.jpg'
+// import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import PhotoCamera from '@material-ui/icons/PhotoCamera'
+import { useHistory, NavLink } from 'react-router-dom'
 import MenuItem from '@material-ui/core/MenuItem';
-import Grid from '@material-ui/core/Grid';
+import MenuIcon from '@material-ui/icons/Menu';
+// import Grid from '@material-ui/core/Grid';
 import HomeIcon from '@material-ui/icons/Home';
-
-
-const useStyles = makeStyles(theme => ({
-
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-    bigAvatar: {
-        margin: 'auto',
-        width: '50%',
-        width: '67px',
-        height: '67px'
-    },
-    link: {
-        marginRight: '10px'
-    },
-    link1: {
-        marginRight: '10px'
-    }
-
-
-}))
-
+import Drawer from '@material-ui/core/Drawer'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import Button from '@material-ui/core/Button'
+import './Navbar.styles.scss'
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 export default function ButtonAppBar() {
-    const classes = useStyles();
-
+    const history = useHistory()
     const [personName, setPersonName] = useState()
-    const [open, setOpen] = useState(false);
-
+    const [drawer, setDrawer]=useState(false)
+    const openDrawer = ()=> {
+        setDrawer(true)
+    }
+    const closeDrawer = ()=>{
+        setDrawer(false)
+    }
+    const list = () => (
+        <div onClick = {closeDrawer}>
+            <List>
+                <NavLink className="a" to={'/add-patient'}>Add Patient</NavLink>
+                <br/>
+                <NavLink to={'/remove-patient'}>Remove Patient</NavLink>
+                <br/>
+                <hr/>
+                <NavLink to={'/'}>Sign Out</NavLink>
+            </List>
+        </div>
+    )
     useEffect(() => {
-
         setPersonName("Dr. Sarder A. Nayeem")
-
     }, [])
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
-        <>
+        <div>
+        <div className="Navbar">
+            <div className="list">
+                <HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/>
+                <span onClick={() => history.push(`/dashboard`)} >VSM Dashboard</span>
+                <span className="white grid-right">{personName}</span>
+                <MenuIcon className="white grid-right" onClick={openDrawer}/>
+            </div>
+        </div>
+        <Drawer anchor={'right'} open={ drawer } onClose={closeDrawer} > 
+                {list()}
+        </Drawer>
+        </div>
+    )
+}
+    {/*    <>
             <AppBar position="static" style={{ background: 'linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%)' }}>
                 <Toolbar>
                     <IconButton component={Link} to={'/dashboard'} color="inherit">
                         <HomeIcon />
                     </IconButton>
-
-                    <Typography variant="h5" className={classes.title} >
+                    <Typography variant="h5">
                         VSM Dashboard
                     </Typography>
 
-                    <MenuItem className={classes.link1}  onClick={handleClickOpen} component={Link} to={'/add-patient'}>Add Patient</MenuItem>
-                    <MenuItem className={classes.link1}  component={Link} to={'/remove-patient'}>Remove Patient</MenuItem>
+                    <MenuItem  component={Link} to={'/add-patient'}>Add Patient</MenuItem>
+                    <MenuItem  component={Link} to={'/remove-patient'}>Remove Patient</MenuItem>
 
-                    <div className={classes.link}>
-
-                        <Typography style={{ paddingLeft:'125px' }}>Welcome</Typography>
+                    <div>
+                        <Typography style={{ textAlign: "right"}} varient="p">Welcome</Typography>
                         <Typography  variant="h6" >{personName}</Typography>
-                        <Typography style={{ textDecoration: 'none',color: '#FFFFFF',paddingLeft:'145px' }} variant="caption" display="block" component={Link} to={'/'}>Sign out</Typography>
-
-
+                        <Typography style={{ textAlign: "right"}} varient="p">Sign out</Typography>
                     </div>
-
-                    <Avatar src={picture} className={classes.bigAvatar} />
-
+                    <Avatar src={picture} />
                 </Toolbar>
             </AppBar>
-        </>
-    );
-}
+    </>*/}

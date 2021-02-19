@@ -3,6 +3,44 @@
         padding-right: 50px;
         margin-right: 20px;
     }
+    .hr-grid{
+        display: grid;
+        justify-content: start;
+        grid-template-columns: 1fr 1fr;
+        grid-row: 90px 90px 90px;
+
+        .title{
+            margin: 0!important;
+            padding: 0!important;
+            grid-column: 1/2;
+            grid-row: 1/2;
+            align-self: end;
+        }
+        .upper{
+            grid-column: 1/2;
+            grid-row: 2/3;
+            align-self: start;
+        }
+        .hr{
+            grid-column: 2/3;
+            grid-row: 2/4;
+            align-self: center;
+            margin: 0!important;
+            padding: 0!important;
+        }
+        .lower{
+            grid-column: 1/2;
+            grid-row:3/4;
+            align-self: center;
+        
+        }
+    }
+    .side-by-side{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        align-items: center;
+        grid-gap: 10px;
+    }
 }
 .Card:hover {
 }
