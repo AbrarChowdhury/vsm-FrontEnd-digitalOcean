@@ -5,6 +5,7 @@ import AddPatientForm from './components/patient/addPatientForm.component'
 import RemovePatientForm from './components/patient/RemovePatientForm.component'
 import UpdatePatient from './components/patient/updatePatientForm.component'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import './App.styles.scss'
 function App() {
   return (
     <div className="App">

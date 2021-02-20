@@ -210,11 +210,11 @@ function Card({ bed }) {
                     </Grid>
                     <Grid item xs={2}>
                         <div className="side-by-side blue">
-                            <Typography variant="h6">Sp02</Typography>
+                            <Typography variant="p">Sp02</Typography>
                             <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
                         </div>
                         <div className="side-by-side blue">    
-                            <Typography variant="h6">Pulse</Typography>
+                            <Typography variant="p">Pulse</Typography>
                             <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
                         </div>
                     </Grid>
