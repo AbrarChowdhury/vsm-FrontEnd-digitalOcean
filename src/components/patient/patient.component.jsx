@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import Grid from '@material-ui/core/Grid'
 import Collapse from '@material-ui/core/Collapse'
 import './patient.styles.scss'
 import Chart from '../chart/chart.component'
@@ -54,51 +53,66 @@ function Patient() {
             <div>
                 <Navbar/>
                 <div className="Patient">
-                    <Grid container xs={12}>
-                        <Grid  item xs={12}>
-                            <Typography variant="p" className="responsive-float">Name: </Typography>
-                            <Typography variant="p" className="responsive-float">{patient.name}</Typography>
-                        </Grid>
-                        <Grid  item xs={6}>
-                            <Typography variant="p" className="responsive-float">Bed: </Typography>
+                    <div className="info-grid">
+                        <div className="bed">
+                            <Typography variant="p" className="responsive-float blue">Bed:</Typography>
                             <Typography variant="p" className="responsive-float">{patient.bed}</Typography>
-                        </Grid>
-                        <Grid  item xs={6}>
-                            <Typography variant="p" className="responsive-float">Temp:</Typography>
+                        </div>
+                        <div className="name">
+                            <Typography variant="p" className="responsive-float blue">Name:</Typography>
+                            <Typography variant="p" className="responsive-float">{patient.name}</Typography>
+                        </div>
+                        <div className="temp">
+                            <Typography variant="p" className="responsive-float blue">Temp:</Typography>
                             <Typography variant="p" className="responsive-float">{temp[temp.length-1]}</Typography>
-                        </Grid>
-                        <Grid  item xs={12}><br/></Grid>
-                        <Grid  item xs={6}>
-                            <Typography onClick={handleChange} variant="p" className="responsive-float">View {checked?"less":"more"}...</Typography>
-                        </Grid>
-                        <Grid  item xs={6}>
+                        </div>
+                        <div className="edit-btn">
                             <Button variant="contained" onClick={() => history.push(`/updatePatient/${bed}`)} endIcon={<Edit/>}>
                                 <Typography>Edit</Typography>
                             </Button>
-                        </Grid>
-                            <Collapse in={checked}>
-                                <br/>
-                                <Grid  item xs={12}>
-                                    <Typography variant="p" className="responsive-float">Age:</Typography>
-                                    <Typography variant="p" className="responsive-float">{patient.age}</Typography>
-                                </Grid>
-                                <Grid  item xs={12}>
-                                    <Typography variant="p" className="responsive-float">Sex:</Typography>
-                                    <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
-                                </Grid>
-                                <Grid  item xs={12} >
-                                    <Typography variant="p" className="responsive-float">Admission:</Typography>
-                                    <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    <Typography variant="p" className="responsive-float">Diagnosis:</Typography>
-                                    <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
-                                </Grid>
-                            </Collapse>
-                    </Grid>
-
-                    <div>    
-                        <div className="green hr-grid">
+                        </div>
+                        <div className="age">
+                            <Typography variant="p" className="responsive-float blue">Age:</Typography>
+                            <Typography variant="p" className="responsive-float">{patient.age}</Typography>
+                        </div>
+                        <div className="sex" >
+                            <Typography variant="p" className="responsive-float blue">Sex:</Typography>
+                            <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
+                        </div>
+                        <div className="admission" >
+                            <Typography variant="p" className="responsive-float blue">Admission:</Typography>
+                            <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
+                        </div>
+                        <div className="diagnosis">
+                            <Typography variant="p" className="responsive-float blue">Diagnosis:</Typography>
+                            <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
+                        </div>   
+                    </div>
+                    <div className="collapsible">
+                        <Collapse in={checked}>
+                            <div className="age-c">
+                                <Typography variant="p" className="responsive-float blue">Age:</Typography>
+                                <Typography variant="p" className="responsive-float">{patient.age}</Typography>
+                            </div>
+                            <div className="sex-c" >
+                                <Typography variant="p" className="responsive-float blue">Sex:</Typography>
+                                <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
+                            </div>
+                            <div className="admission-c" >
+                                <Typography variant="p" className="responsive-float blue">Admission:</Typography>
+                                <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
+                            </div>
+                            <div className="diagnosis-c">
+                                <Typography variant="p" className="responsive-float blue">Diagnosis:</Typography>
+                                <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
+                            </div>   
+                        </Collapse>
+                        <div className="view-more">
+                            <Typography onClick={handleChange} variant="p" className="responsive-float blue">View {checked?"less":"more"}...</Typography>
+                        </div>
+                    </div>
+                    <div className="chart-grid">    
+                        <div className="heart-rate green hr-grid">
                             <Typography className="title" variant="p">H-R</Typography>
                             <Typography className="upper" variant="p">150</Typography>
                             <Typography className="lower" variant="p">50</Typography>
@@ -106,16 +120,17 @@ function Patient() {
                         </div>
                         <div className="ecg-chart">
                             <Chart bed={bed}/>
+                            <br/><br/><br/>
                         </div>
-                        <div className="side-by-side blue">
+                        <div className="sp02 side-by-side blue">
                             <Typography variant="p">Sp02</Typography>
                             <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
                         </div>
-                        <div className="side-by-side blue">    
+                        <div className="pulse side-by-side blue">    
                             <Typography variant="p">Pulse</Typography>
                             <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
                         </div>
-                        <div className="spo2-chart">
+                        <div className="sp02-chart">
                             <Chart bed={bed}/>
                         </div>
                     </div>

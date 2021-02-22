@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 // import Avatar from '@material-ui/core/Avatar'
-// import picture from '../../assets/doctor.jpg'
+import picture from '../../assets/doctor.jpg'
 // import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import PhotoCamera from '@material-ui/icons/PhotoCamera'
 import { useHistory, NavLink } from 'react-router-dom'
@@ -45,10 +45,22 @@ export default function ButtonAppBar() {
         <div className="nav">
         <div className="Navbar">
             <div className="list">
-                <HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/>
+                {/*<HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/>*/}
                 {/*<span onClick={() => history.push(`/dashboard`)} >VSM Dashboard</span>*/}
-                <span className="white grid-right">{personName}</span>
-                <MenuIcon className="white grid-right" onClick={openDrawer}/>
+                <span className="home-icon"><HomeIcon onClick={() => history.push(`/dashboard`)} className="white"/></span>
+                <span className="vsm-text" onClick={() => history.push(`/dashboard`)}>VSM Dashboard</span>
+                <span className="person-name white grid-right">{personName}</span>
+                <div className="person">
+                    <p className="main hover-pointer pad-right" onClick={() => history.push(`/add-patient`)}>Add Patient</p>
+                    <p className="main hover-pointer pad-right" onClick={() => history.push(`/remove-patient`)}>Remove Patient</p>
+                    <div className="text">
+                    <p className="sub">welcome</p>
+                    <p className="main" >{personName}</p>
+                    <p className="sub hover-pointer" onClick={() => history.push(`/`)}>Sign out</p>
+                    </div>
+                    <img src={picture} alt="Avatar"></img>
+                </div>
+                <MenuIcon className="hamburger white grid-right" onClick={openDrawer}/>
             </div>
         </div>
         <Drawer anchor={'right'} open={ drawer } onClose={closeDrawer} > 

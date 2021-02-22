@@ -134,91 +134,53 @@ function Card({ bed }) {
             <div className={classes.chartText}>
                 <Grid container xs={12}>
                     <Grid item xs={2} className={classes.textHeader1}>
-                        <Typography variant="subtitle" className={classes.textHeader}>Bed No:</Typography>
-
+                        <Typography variant="subtitle" className={classes.textHeader}>Bed No:</Typography><br/>
+                        <Typography variant="subtitle" className={classes.textBody}>{bed}</Typography>
                     </Grid>
                     <Grid item xs={3} className={classes.textHeader1}>
-                        <Typography variant="subtitle" className={classes.textHeader}>Patient Name:</Typography>
-
-                    </Grid>
-                    <Grid item xs={1} className={classes.textHeader1}>
-                        <Typography variant="subtitle" className={classes.textHeader}>Age:</Typography>
-
-                    </Grid>
-                    <Grid item xs={1} className={classes.textHeader1}>
-                        <Typography variant="subtitle" className={classes.textHeader}>Sex:</Typography>
-
-                    </Grid>
-                    <Grid item xs={1} className={classes.textHeader1}>
-                        <Typography variant="subtitle" className={classes.textHeader}>Temp:</Typography>
-
-
-                    </Grid>
-
-                    <NotificationsActiveIcon className={classes.notificationIcon}></NotificationsActiveIcon>
-                    <Grid item xs={2} style={{ marginRight: '30px' }}>
-                        <Typography variant="subtitle" className={classes.textBody}>{bed}</Typography>
-
-                    </Grid>
-                    <Grid item xs={3} style={{ marginRight: '32px' }}>
+                        <Typography variant="subtitle" className={classes.textHeader}>Patient-Name:</Typography><br/>
                         <Typography variant="subtitle" className={classes.textBody}>{patientData.name}</Typography>
-
                     </Grid>
-                    <Grid item xs={1} style={{ marginRight: '30px' }}>
+                    <Grid item xs={1} className={classes.textHeader1}>
+                        <Typography variant="subtitle" className={classes.textHeader}>Age:</Typography><br/>
                         <Typography variant="subtitle" className={classes.textBody}>{patientData.age}</Typography>
-
                     </Grid>
-                    <Grid item xs={1} style={{ marginRight: '30px' }}>
+                    <Grid item xs={1} className={classes.textHeader1}>
+                        <Typography variant="subtitle" className={classes.textHeader}>Sex:</Typography><br/>
                         <Typography variant="subtitle" className={classes.textBody}>{patientData.sex}</Typography>
-
                     </Grid>
-                    <Grid item xs={1}>
+                    <Grid item xs={1} className={classes.textHeader1}>
+                        <Typography variant="subtitle" className={classes.textHeader}>Temp:</Typography><br/>
                         <Typography variant="subtitle" className={classes.textBody}>{temp[temp.length-1]}</Typography>
-
                     </Grid>
-                    <Grid item xs={1}>
-
-
-                    </Grid>
-
-
+                    <NotificationsActiveIcon className={classes.notificationIcon}></NotificationsActiveIcon>
                 </Grid>
             </div>
 
             <div className={classes.chart}>
-                <Grid container xs={12}>
-                    <Grid item xs={10} >
-                        <div className="padding-right-large">
-                        <Chart bed={bed}/>
-                        </div>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <div className="green hr-grid">
-                            <Typography className="title" variant="p">HR</Typography>
+                <div className="chart-grid">    
+                        <div className="heart-rate green hr-grid">
+                            <Typography className="title" variant="p">H-R</Typography>
                             <Typography className="upper" variant="p">150</Typography>
                             <Typography className="lower" variant="p">50</Typography>
                             <Typography className="hr" variant="h2">{heartRate[heartRate.length-1]}</Typography>
                         </div>
-                    </Grid>
-                </Grid>
-                <Grid container xs={12}>
-                    <Grid item xs={12}><Typography variant="h6" style={{ paddingTop: '10px', paddingBottom: "10px" }} className={classes.textHeader} >PLETH</Typography></Grid>
-                    <Grid item xs={10} >
-                        <div className="padding-right-large">
+                        <div className="ecg-chart">
                             <Chart bed={bed}/>
+                            <br/>
                         </div>
-                    </Grid>
-                    <Grid item xs={2}>
-                        <div className="side-by-side blue">
+                        <div className="sp02 side-by-side blue">
                             <Typography variant="p">Sp02</Typography>
                             <Typography variant="h3">{spo2[spo2.length-1]}</Typography>
                         </div>
-                        <div className="side-by-side blue">    
+                        <div className="pulse side-by-side blue">    
                             <Typography variant="p">Pulse</Typography>
                             <Typography variant="h3">{ecg[ecg.length-1]}</Typography>
                         </div>
-                    </Grid>
-                </Grid>
+                        <div className="sp02-chart">
+                            <Chart bed={bed}/>
+                        </div>
+                </div>
             </div>
         </div>
 
