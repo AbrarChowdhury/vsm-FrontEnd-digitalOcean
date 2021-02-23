@@ -118,68 +118,6 @@ function Patient() {
                             <Typography onClick={handleChange} variant="p" className="responsive-float blue">View {checked?"less":"more"}...</Typography>
                         </div>
                     </div>
-                    <div className="info-grid">
-                        <div className="bed">
-                            <Typography variant="p" className="responsive-float blue">Bed:</Typography>
-                            <Typography variant="p" className="responsive-float">{patient.bed}</Typography>
-                        </div>
-                        <div className="name">
-                            <Typography variant="p" className="responsive-float blue">Name:</Typography>
-                            {editMode?
-                            <TextField variant="outlined" InputProps={{ className: classes.input }} value={patient.name}></TextField>
-                                :
-                            <Typography variant="p" className="responsive-float">{patient.name}</Typography>
-                            }
-                        </div>
-                        <div className="temp">
-                            <Typography variant="p" className="responsive-float blue">Temp:</Typography>
-                            <Typography variant="p" className="responsive-float">{temp[temp.length-1]}</Typography>
-                        </div>
-                        <div className="edit-btn">
-                            <Button variant="contained" onClick={() => handleMode()} endIcon={<Edit/>}>
-                                <Typography>Edit</Typography>
-                            </Button>
-                        </div>
-                        <div className="age">
-                            <Typography variant="p" className="responsive-float blue">Age:</Typography>
-                            <Typography variant="p" className="responsive-float">{patient.age}</Typography>
-                        </div>
-                        <div className="sex" >
-                            <Typography variant="p" className="responsive-float blue">Sex:</Typography>
-                            <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
-                        </div>
-                        <div className="admission" >
-                            <Typography variant="p" className="responsive-float blue">Admission:</Typography>
-                            <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
-                        </div>
-                        <div className="diagnosis">
-                            <Typography variant="p" className="responsive-float blue">Diagnosis:</Typography>
-                            <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
-                        </div>   
-                    </div>
-                    <div className="collapsible">
-                        <Collapse in={checked}>
-                            <div className="age-c">
-                                <Typography variant="p" className="responsive-float blue">Age:</Typography>
-                                <Typography variant="p" className="responsive-float">{patient.age}</Typography>
-                            </div>
-                            <div className="sex-c" >
-                                <Typography variant="p" className="responsive-float blue">Sex:</Typography>
-                                <Typography variant="p" className="responsive-float">{patient.sex}</Typography>
-                            </div>
-                            <div className="admission-c" >
-                                <Typography variant="p" className="responsive-float blue">Admission:</Typography>
-                                <Typography variant="p" className="responsive-float">{"22/11/2020"}</Typography>
-                            </div>
-                            <div className="diagnosis-c">
-                                <Typography variant="p" className="responsive-float blue">Diagnosis:</Typography>
-                                <Typography variant="p" className="responsive-float">Dr.xyz</Typography>
-                            </div>   
-                        </Collapse>
-                        <div className="view-more">
-                            <Typography onClick={handleChange} variant="p" className="responsive-float blue">View {checked?"less":"more"}...</Typography>
-                        </div>
-                    </div>
                     <div className="chart-grid">    
                         <div className="heart-rate green hr-grid">
                             <Typography className="title" variant="p">H-R</Typography>
