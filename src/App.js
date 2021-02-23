@@ -3,7 +3,6 @@ import Dashboard from './pages/dashboard/dashboard'
 import LandingPage from './pages/landingPage/landingPage.component'
 import AddPatientForm from './components/patient/addPatientForm.component'
 import RemovePatientForm from './components/patient/RemovePatientForm.component'
-import UpdatePatient from './components/patient/updatePatientForm.component'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.styles.scss'
 function App() {
@@ -26,8 +25,6 @@ function App() {
             </Route>
             <Route exact path="/:bed">
               <Patient/>
-            </Route>
-            <Route exact path="/updatePatient/:bed" children={<UpdatePatient />}>
             </Route>
           </Switch>
         </div>
