@@ -1,24 +1,110 @@
 .Card{
-    background: #0A081A;
-    text-align: left;
-    padding: 10px;
-    margin: 2px;
-    border-radius: 2px;
-    
-    .white{
-        color:white;
+    background: black;
+    color:white;
+    padding: 5%;
+    .hr-grid{
+        display: grid;
+        justify-content: start;
+        max-height: 90px;
+        grid-template-columns: 1fr 1fr;
+        grid-row: 90px 90px 90px;
+        .title{
+            margin: 0!important;
+            padding: 0!important;
+            grid-column: 1/2;
+            grid-row: 1/2;
+            align-self: end;
+        }
+        .upper{
+            grid-column: 1/2;
+            grid-row: 2/3;
+            align-self: start;
+        }
+        .hr{
+            grid-column: 2/3;
+            grid-row: 2/4;
+            align-self: center;
+            margin: 0!important;
+            padding: 0!important;
+        }
+        .lower{
+            grid-column: 1/2;
+            grid-row:3/4;
+            align-self: center;
+        
+        }
     }
-    .bold{
-        font-weight: bold;
+    .side-by-side{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        align-items: center;
+        grid-gap: 10px;
     }
-    .green{
-        color:#9EF48F;
+    .chart-grid{
+        display: grid;
+        max-width: 100vw;
+        width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas: 
+            '. . . hr'
+            'ecg ecg ecg ecg'
+            '. sp . puls'
+            'spo2 spo2 spo2 spo2'
+        ;
+        .heart-rate{ grid-area: hr; justify-self: center!important;}
+        .ecg-chart{ grid-area: ecg; align-self: end!important;}
+        .sp02{ grid-area: sp; justify-self: center!important;}
+        .pulse{ grid-area: puls; justify-self: center!important;}
+        .sp02-chart{ grid-area: spo2; }
     }
-    .blue{
-        color:#A3EDD6;
+    .info-grid{
+        display: grid;
+        width: 100%;
+        grid-gap: 5%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        .bell{
+            justify-self: end;
+        }
+        .name{
+           grid-column: 1 / 6;
+           grid-row: 2 / 3;
+        }
     }
-}
-.Card:hover {
-    // background: #04139a;
-    cursor: pointer;
+    @media (min-width: 500px) {
+        .info-grid{
+            grid-template-columns: 1fr max-content 1fr 1fr 1fr 1fr!important;
+            .name{
+                grid-column: 2 / 3!important;
+                grid-row: 1 / 2!important;
+            }
+        }
+    }
+    @media (min-width: 600px)  {
+        .chart-grid{
+            grid-template-areas: 
+                'ecg ecg ecg hr'
+                '. . . sp'
+                'spo2 spo2 spo2 puls'
+            ;
+        }
+    }
+    @media (min-width: 960px) {
+        .chart-grid{
+            grid-template-areas: 
+            '. . . hr'
+            'ecg ecg ecg ecg'
+            '. sp . puls'
+            'spo2 spo2 spo2 spo2'
+        ;
+        }
+    }
+    @media (min-width: 1280px)  {
+        .chart-grid{
+            grid-template-areas: 
+                'ecg ecg ecg hr'
+                '. . . sp'
+                'spo2 spo2 spo2 puls'
+            ;
+        }
+    }
 }

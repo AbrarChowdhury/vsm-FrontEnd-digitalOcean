@@ -1,0 +1,99 @@
+.Navbar{
+    background: linear-gradient(45deg, #55D0B3 30%, #64D7EB 90%);
+    padding: 5px Min(50px, 5%);
+    .vsm-text{
+        display: none;
+    }
+    .home-icon{
+        &:hover{cursor: pointer;}
+    }
+    .hover-pointer{
+        &:hover{cursor: pointer;}
+    }
+    @media (min-width: 600px) {
+        .home-icon{
+            display: none!important;
+        }
+        .vsm-text{
+            display: block;
+            font-size: larger;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 0.1em;
+            &:hover{cursor: pointer;}
+        }   
+    }
+    @media (min-width: 960px) {
+        .person{
+            display: block;
+            display: grid!important;
+            justify-self: end;
+        }
+        .person-name{
+            display: none;
+        }
+        .hamburger{
+            display: none;
+        }
+        .list{
+            grid-template-columns: max-content auto
+        }
+    }
+    .list{
+        display: grid;
+        grid-template-columns: max-content auto max-content;
+        align-items: center;
+        grid-gap: 10px;
+        .grid-left{
+            justify-self: start;
+        }
+        .grid-right{
+            justify-self: end;
+        }
+        .person{
+            text-align: end;
+            display: grid;
+            grid-template-columns: max-content max-content max-content max-content;
+            align-items: center;
+            grid-gap: 8px;
+            .pad-right { padding-right: 42px;}
+            img {
+                border-radius: 50%;
+                height: 40px;
+                width: 40px;
+              }
+            p{
+                margin: 0;
+                padding: 0;
+                color: white;
+            }
+            .sub{
+                font-size: 12px;
+            }
+            .main{
+                font-weight: 600;
+            }
+            display: none;
+        }
+    }
+    .float-right{
+        float:right;
+    }
+    .float-left{
+        float:left;
+    }
+    .white{
+        color:white;
+    }
+    .icon{
+        :hover{
+            cursor: pointer!important;
+        }
+    }
+
+}
+.nav-link{
+        min-width: 175px!important;
+        padding: 10px 20px!important;
+        display: block!important;
+}
